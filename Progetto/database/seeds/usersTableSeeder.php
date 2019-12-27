@@ -11,7 +11,7 @@ class usersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Users')->insert([
+        DB::table('users')->insert([
             'name'      => 'Admin',
             'surname'   => ' ',
             'email'     => 'adminAppWeb@gmail.com',
