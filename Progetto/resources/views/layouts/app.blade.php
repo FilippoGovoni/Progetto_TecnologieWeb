@@ -48,12 +48,18 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ URL::action('ClientController@index') }}">Mostra Clienti</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
+                                </li>
                                 @else
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Visualizza attività</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Inserisci scheda ore</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
                                 </li>
                                 @endif
                             @endauth
