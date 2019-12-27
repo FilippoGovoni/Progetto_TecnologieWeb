@@ -47,7 +47,7 @@
                     <label for="client_id">Cliente</label>
                     <select class="form-control" name="client_id">
                         @foreach ($clients as $client)
-                        <option value="{{ $client->id }}">{{ $client->PIVA }}</option>
+                        <option value="{{ $client->id }}">{{ $client->nome_referente }} {{ $client->cognome_referente }} {{ $client->PIVA }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -44,6 +44,7 @@ class AdminController extends Controller
         $validator = Validator::make($input, [
             'name'      => 'required|max:20',
             'surname'    => 'required|max:20',
+            'cod_fiscale'    => 'required|max:16',
             'email'   =>    'required|max:50',
         ]);
 

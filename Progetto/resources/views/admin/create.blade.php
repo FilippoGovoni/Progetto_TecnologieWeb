@@ -28,6 +28,10 @@
                     <input class="form-control" type="text" name="surname" />
                 </div>
                 <div class="form-group">
+                    <label for="cod_fiscale">Codice fiscale</label>
+                    <input class="form-control" type="text" name="cod_fiscale" />
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input class="form-control" type="text" name="email" />
                 </div>

@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::resource('client','ClientController',['all']); 
 Route::resource('admin','AdminController',['only',['index','create','store','destroy']]); 
-Route::resource('project','ProjectController',['only',['index','create','store']]); 
+Route::resource('project','ProjectController',['only',['index','create','store','edit','update']]); 
 
 Auth::routes();
 

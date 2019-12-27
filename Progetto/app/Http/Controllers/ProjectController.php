@@ -52,9 +52,8 @@ class ProjectController extends Controller
             'notes'   => 'required|max:50',
             'data_inizio'   => 'required',
             'data_fine'   => 'required',
-            'costo_orario'   => 'required',
+            'costo_orario'   => 'required|min:0',
             'client_id'   => 'required',
-            'user_id'   => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -87,7 +86,10 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project=Project::find($id);
+        $users=User::all();
+
+        return view('project.edit',compact('project','users'));
     }
 
     /**
@@ -99,7 +101,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $project = Project::find($id);
+        $project->update($input);
+
+        return redirect("/project"); // Show
     }
 
     /**
