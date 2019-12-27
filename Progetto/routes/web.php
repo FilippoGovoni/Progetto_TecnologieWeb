@@ -21,7 +21,3 @@ Route::resource('project','ProjectController',['only',['index','create','store']
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
