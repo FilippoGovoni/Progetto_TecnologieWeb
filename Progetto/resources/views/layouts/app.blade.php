@@ -27,7 +27,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -40,29 +40,47 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @if (Route::has('login'))
-                            @auth
-                                @if(Auth::user()->role == 1)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ URL::action('AdminController@index') }}">Mostra Utenti</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ URL::action('ClientController@index') }}">Mostra Clienti</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
-                                </li>
-                                @else
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Visualizza attività</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Inserisci scheda ore</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
-                                </li>
-                                @endif
-                            @endauth
+                        @auth
+                        @if(Auth::user()->role == 1)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Utenti
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ URL::action('AdminController@index') }}">Mostra Utenti</a>
+                                <a class="dropdown-item" href="{{ URL::action('AdminController@create') }}">Inserisci Utenti</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Clienti
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ URL::action('ClientController@index') }}">Mostra Clienti</a>
+                                <a class="dropdown-item" href="{{ URL::action('ClientController@create') }}">Inserisci Clienti</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Progetti
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
+                                <a class="dropdown-item" href="{{ URL::action('ProjectController@create') }}">Inserisci Progetti</a>
+                            </div>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Visualizza attività</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Inserisci scheda ore</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
+                        </li>
+                        @endif
+                        @endauth
                         @endif
 
                     </ul>

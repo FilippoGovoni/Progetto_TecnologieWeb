@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-        <a class="btn btn-primary float-md-right" href="{{ URL::action('ProjectController@create') }}" >Inserisci Nuovo</a>
-    </div>
-</div>
-<br />
+<?php $i=0 ?>
 <div class="row">
     <div class="col-md-12">
             @if (count($elements) > 0)
@@ -23,6 +18,7 @@
                 <tbody>
                     @foreach ($elements as $element)
                     @if(Auth::user()->role == 1)
+                    <?php $i++;?>
                     <tr>
                         <td>{{ $element->name }}</td>
                         <td>{{ $element->client->PIVA }}</td>
@@ -38,7 +34,8 @@
                         </td>
                     </tr>
                     @else
-                    @if(Auth::user()->cod_fiscale == $element->user->cod_fiscale)
+                    <?php $i++;?>
+                    @if(Auth::user()->id == $element->user->id)
                     <tr>
                         <td>{{ $element->name }}</td>
                         <td>{{ $element->client->PIVA }}</td>
@@ -48,8 +45,7 @@
                         Questo progetto non è stato ancora assegnato
                         @endif
                         <td>
-                            <a href="{{ URL::action('ClientController@show', $element->id) }}" class="btn btn-primary btn-sm"> Vedi </a>
-                            <a href="{{ URL::action('ClientController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
+                            <a href="{{ URL::action('ProjectController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
                         </td>
                     </tr>
                     @endif
@@ -57,6 +53,10 @@
                     @endforeach
                 </tbody>
             </table>
+            @if($i==0)
+            <p>Non hai progetti assegnati</p>
+            @endif
+
             @else 
                 <p>Non sono ancora stati inseriti progetti </p>
             @endif

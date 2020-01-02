@@ -4,7 +4,6 @@
     <div class="row">
         <div class="col-md-6">
             <h1>Modifica il cliente</h1>
-
             <form action="{{ URL::action('ClientController@update', $client->id) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PATCH') }}

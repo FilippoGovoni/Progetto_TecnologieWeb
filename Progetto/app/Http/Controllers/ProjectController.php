@@ -117,6 +117,9 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $elemento = Project::find($id);
+        $elemento->delete();
+
+        redirect("\project");
     }
 }

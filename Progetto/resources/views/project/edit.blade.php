@@ -10,11 +10,10 @@
                 {{ method_field('PATCH') }}
 
                 <h5>Progetto selezionato: </h5>
-               <p>ID: {{$project->id}}</p>
                <p>Nome: {{$project->name}}</p>
-               <p>Descrizione: {{$project->desciption}};</p>
+               <p>Descrizione: {{$project->description}}</p><br>
                <div class="form-group">
-                    <label for="user_id">Categoria</label>
+                    <label for="user_id">Seleziona l'utente a cui assegnarlo</label>
                     <select class="form-control" name="user_id">
                         @foreach ($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }} {{ $user->surname }}</option>
