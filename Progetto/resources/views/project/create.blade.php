@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h1>Inserisci una nuova spesa</h1>
+            <h1>Crea un nuovo Progetto</h1>
 
             @if ($errors->any())
                 <div class="alert alert-danger">

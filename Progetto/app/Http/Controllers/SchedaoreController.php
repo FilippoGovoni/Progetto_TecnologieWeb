@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Validator;
-
-use App\Client;
-use App\User;
-use App\Project;
 use Illuminate\Http\Request;
-
-class ProjectController extends Controller
+use App\SchedaOre;
+use App\Project;
+class SchedaoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $elements=Project::all();
-
-        return view('project.index',compact('elements'));
+        $elements=SchedaOre::all();
+        return view('schedaore.index',compact('elements'));
     }
 
     /**
@@ -29,11 +25,9 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $users = User::all();
-        $clients=Client::all();
-
-        return view('project.create',compact('users','clients'));
+    {   
+        $elements= Project::all();
+        return view('schedaore.create',compact('elements'));
     }
 
     /**
@@ -44,27 +38,23 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        
-        $validator = Validator::make($input, [
-            'name'      => 'required|max:50',
-            'description'        => 'required|max:255',
-            'notes'   => 'required|max:50',
-            'data_inizio'   => 'required',
-            'data_fine'   => 'required',
-            'costo_orario'   => 'required|min:0',
-            'client_id'   => 'required',
-        ]);
 
+        $input=$request->all();
+        $validator=Validator::make($input,[
+            'data_scheda'=>'required|date',
+            'hours_work'=>'required|min:0',
+            'note'   => 'required|max:255',
+            'project_name'   => 'required|exists:projects,name'
+        ]);
         if ($validator->fails()) {
-            return redirect('project/create')
+            return redirect('schedaore/create')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        Project::create($input);
-        
-        return redirect('/project');
+        SchedaOre::create($input);
+        return redirect('schedaore');
+
     }
 
     /**
@@ -86,10 +76,7 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        $project=Project::find($id);
-        $users=User::all();
-
-        return view('project.edit',compact('project','users'));
+        //
     }
 
     /**
@@ -101,12 +88,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
-
-        $project = Project::find($id);
-        $project->update($input);
-
-        return redirect("/project"); // Show
+        //
     }
 
     /**
@@ -117,9 +99,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        $elemento = Project::find($id);
-        $elemento->delete();
-
-        return redirect("/project");
+        SchedaOre::find($id)->delete();
+        return redirect('schedaore');
     }
 }

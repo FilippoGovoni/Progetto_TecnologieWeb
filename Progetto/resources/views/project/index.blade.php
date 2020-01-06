@@ -30,7 +30,7 @@
 
                         <td>
                             <a href="{{ URL::action('ProjectController@edit', $element->id) }}" class="btn btn-primary btn-sm"> Assegna </a>
-                            <a href="{{ URL::action('ClientController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
+                            <a href="{{ URL::action('ProjectController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
                         </td>
                     </tr>
                     @else

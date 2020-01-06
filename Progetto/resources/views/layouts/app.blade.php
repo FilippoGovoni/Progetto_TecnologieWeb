@@ -73,8 +73,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Visualizza attività</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inserisci scheda ore</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navBarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Scheda Ore
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@index') }}">Visualizza le tue schede Ore</a>
+                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@create') }}">Inserisci Una nuova Scheda Ore</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>

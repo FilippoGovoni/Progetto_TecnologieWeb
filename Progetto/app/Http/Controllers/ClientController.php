@@ -116,6 +116,6 @@ class ClientController extends Controller
         $elemento = Client::find($id);
         $elemento->delete();
 
-        redirect("\client");
+        return redirect("/client");
     }
 }

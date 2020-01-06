@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::resource('client','ClientController',['all']); 
 Route::resource('admin','AdminController',['only',['index','create','store','destroy']]); 
 Route::resource('project','ProjectController',['only',['index','create','store','edit','update']]); 
-
+Route::resource('schedaore','SchedaoreController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
