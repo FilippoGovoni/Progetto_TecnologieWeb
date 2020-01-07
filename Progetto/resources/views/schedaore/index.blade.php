@@ -24,10 +24,14 @@
                             <td>{{ $element->hours_work}}</td>
                             <td>{{ $element->note}}</td>
                             <td>
-                                <form action="/schedaore/{{$element->id}}">
+                                <form method="POST" action="/schedaore/{{$element->id}}">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="button">Elimina Scheda Ore</button>
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="btn btn-danger btn-sm btn-delete">Elimina Scheda Ore</button>
+                                        </div>
+                                    </div> 
                                 </form>
                             </td>
                         </tr>
