@@ -19,6 +19,8 @@ class CreateSchedaOresTable extends Migration
             $table->string('project_name');
             $table->Integer('hours_work');
             $table->longText('note');
+            $table->unsignedBigInteger('user_id')->default('1');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

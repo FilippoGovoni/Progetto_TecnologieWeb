@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        @if(count($elements)>0)
+        @if(count($schede)>0)
             <table class="table">
                 <thead>
                     <tr>
@@ -16,25 +16,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($elements as $element)
+                    @foreach ($schede as $el)
+                    @if(Auth::user()->id == $el->user_id)
                         <tr>
                             <td>{{ Auth::user()->name }} </td>
-                            <td>{{ $element->project_name}} </td>
-                            <td>{{ $element->data_scheda}}</td>
-                            <td>{{ $element->hours_work}}</td>
-                            <td>{{ $element->note}}</td>
+                            <td>{{ $el->project_name}} </td>
+                            <td>{{ $el->data_scheda}}</td>
+                            <td>{{ $el->hours_work}}</td>
+                            <td>{{ $el->note}}</td>
                             <td>
-                                <form method="POST" action="/schedaore/{{$element->id}}">
-                                    @method('DELETE')
-                                    @csrf
-                                    <div class="field">
-                                        <div class="control">
-                                            <button type="submit" class="btn btn-danger btn-sm btn-delete">Elimina Scheda Ore</button>
-                                        </div>
-                                    </div> 
+                                <form method="POST" action="/schedaore/{{ $el->id}}">
+                                @method('DELETE')  
+                                @csrf
+                                <div class="field">
+                                    <div class="control">
+                                        <button type="submit" class="btn btn-danger btn-sm btn-delete">Elimina Scheda</button>
+                                    </div>
+                                </div> 
                                 </form>
+                            
                             </td>
                         </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>

@@ -62,7 +62,7 @@ class ProjectController extends Controller
                 ->withInput();
         }
 
-        Project::create($input);
+        Project::create([$input,Auth::user()->id]);
         
         return redirect('/project');
     }

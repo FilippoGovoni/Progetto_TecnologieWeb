@@ -26,7 +26,9 @@
                 <label for="project_name">Progetto</label>
                 <select class="form-control" name="project_name">
                     @foreach ($elements as $project)
+                    @if( $project->user_id == Auth::user()->id)
                     <option value="{{ $project->name }}">{{ $project->name }}</option>
+                    @endif
                     @endforeach
                 </select>
             </div>
@@ -40,6 +42,13 @@
                 <label for="note">Note</label>
                 <textarea name="note" cols="50" rows="5"></textarea>
             </div>
+
+            <div class="form-group">
+                <label for="user_id">Firma</label>
+                <input type="checkbox" name="user_id" value="{{ Auth::user()->id  }}">
+                
+            </div>
+
 
             <input class="btn btn-primary" type="submit" value="Nuova scheda ore">
 

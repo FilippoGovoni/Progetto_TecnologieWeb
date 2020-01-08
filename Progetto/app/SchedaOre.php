@@ -9,5 +9,6 @@ class SchedaOre extends Model
     protected $fillable=['data_scheda',
     'hours_work',
     'note',
-    'project_name'];
+    'project_name',
+    'user_id'];
 }
