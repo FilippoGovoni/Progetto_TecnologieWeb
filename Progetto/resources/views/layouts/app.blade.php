@@ -83,7 +83,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
+                            <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Riepilogo Progetti</a>
                         </li>
                         @endif
                         @endauth

@@ -47,7 +47,7 @@
                 
 
 
-            <input class="btn btn-primary" type="submit" value="Nuova scheda ore">
+            <input class="btn btn-primary" type="submit" value="Conferma scheda ore">
 
         </form>
         @else
