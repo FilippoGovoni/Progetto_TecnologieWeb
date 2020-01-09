@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\lavora_su;
 use Illuminate\Http\Request;
 use Validator;
 use App\SchedaOre;
@@ -18,7 +19,7 @@ class SchedaoreController extends Controller
     
     public function create()
     {   
-        $elements= Project::all();
+        $elements= lavora_su::all();
         return view('schedaore.create',compact('elements'));
     }
 

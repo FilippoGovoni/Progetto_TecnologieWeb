@@ -7,6 +7,8 @@ use Validator;
 use App\Client;
 use App\User;
 use App\Project;
+use App\lavora_su;
+use App\SchedaOre;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -19,8 +21,9 @@ class ProjectController extends Controller
     public function index()
     {
         $elements=Project::all();
+        $lavora= lavora_su::all();
 
-        return view('project.index',compact('elements'));
+        return view('project.index',compact('elements','lavora'));
     }
 
     /**
@@ -50,8 +53,8 @@ class ProjectController extends Controller
             'name'      => 'required|max:50',
             'description'        => 'required|max:255',
             'notes'   => 'required|max:50',
-            'data_inizio'   => 'required',
-            'data_fine'   => 'required',
+            'data_inizio'   => 'required|date',
+            'data_fine'   => 'required|date|after:data_inizio',
             'costo_orario'   => 'required|min:0',
             'client_id'   => 'required',
         ]);
@@ -62,7 +65,7 @@ class ProjectController extends Controller
                 ->withInput();
         }
 
-        Project::create([$input,Auth::user()->id]);
+        Project::create($input);
         
         return redirect('/project');
     }
@@ -75,9 +78,11 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $elemento= Project::find($id);
+        $utenti= lavora_su::all()->where('project_id','=',$id);
 
+        return view("project.show",compact('elemento','utenti'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -101,12 +106,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
+        $project_id = $id;
+        $user_id = $request->user_id;
+        
+        lavora_su::create(['user_id'=>$user_id,'project_id'=>$project_id]);
 
-        $project = Project::find($id);
-        $project->update($input);
-
-        return redirect("/project"); // Show
+        return redirect("/project");
     }
 
     /**
@@ -117,8 +122,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        $elemento = Project::find($id);
-        $elemento->delete();
+        Project::find($id)->delete();
 
         return redirect("/project");
     }

@@ -27,7 +27,7 @@
                 <select class="form-control" name="project_name">
                     @foreach ($elements as $project)
                     @if( $project->user_id == Auth::user()->id)
-                    <option value="{{ $project->name }}">{{ $project->name }}</option>
+                    <option value="{{ $project->project->name }}">{{ $project->project->name }}</option>
                     @endif
                     @endforeach
                 </select>

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<?php $i=0 ?>
+<?php $i=0;
+      $j=0; ?>
 <div class="row">
     <div class="col-md-12">
             @if (count($elements) > 0)
@@ -10,7 +11,6 @@
                     <tr>
                         <th scope="col">Nome </th>
                         <th scope="col">Cliente</th>
-                        <th scope="col">Utente</th>
 
                         <th scope="col">Azioni</th>
                     </tr>
@@ -22,28 +22,24 @@
                     <tr>
                         <td>{{ $element->name }}</td>
                         <td>{{ $element->client->PIVA }}</td>
-                        @if($element->user->id !=0)
-                        <td>{{ $element->user->name }} {{ $element->user->surname }}</td>
-                        @else
-                        Questo progetto non è stato ancora assegnato
-                        @endif
 
                         <td>
-                            <a href="{{ URL::action('ProjectController@edit', $element->id) }}" class="btn btn-primary btn-sm"> Assegna </a>
+                            <a href="{{ URL::action('ProjectController@show', $element->id) }}" class="btn btn-primary btn-sm"> Vedi </a>
+                            <a href="{{ URL::action('ProjectController@edit', $element->id) }}" class="btn btn-secondary btn-sm"> Assegna </a>
                             <a href="{{ URL::action('ProjectController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
                         </td>
                     </tr>
                     @else
                     <?php $i++;?>
-                    @if(Auth::user()->id == $element->user->id)
+                    @foreach ($lavora as $l)
+                    @if((Auth::user()->id == $l->user_id) && ($element->id == $l->project_id))
+                    <?php $j++;?> 
+                    @endif 
+                    @endforeach
+                    @if($j >0)
                     <tr>
                         <td>{{ $element->name }}</td>
                         <td>{{ $element->client->PIVA }}</td>
-                        @if($element->user->id !=0)
-                        <td>{{ $element->user->name }} {{ $element->user->surname }}</td>
-                        @else
-                        Questo progetto non è stato ancora assegnato
-                        @endif
                         <td>
                             <a href="{{ URL::action('ProjectController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
                         </td>
@@ -51,12 +47,12 @@
                     @endif
                     @endif
                     @endforeach
-                </tbody>
+                
+            <?php if($i==0) {?>
+            <tr><td><p>Non hai progetti assegnati</p></td></tr>
+            <?php } ?>
+            </tbody>
             </table>
-            @if($i==0)
-            <p>Non hai progetti assegnati</p>
-            @endif
-
             @else 
                 <p>Non sono ancora stati inseriti progetti </p>
             @endif

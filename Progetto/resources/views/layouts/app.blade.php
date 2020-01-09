@@ -66,6 +66,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
+                                <a class="dropdown-item" href="{{URL::action('ResearchController@index')}}">Visualizza ore utilizzate per i Progetti</a>
                                 <a class="dropdown-item" href="{{ URL::action('ProjectController@create') }}">Inserisci Progetti</a>
                             </div>
                         </li>

@@ -14,8 +14,9 @@ class Project extends Model
     {
         return $this->belongsTo('App\Client');
     }
-    public function user()
+    public function lavora_su()
     {
-        return $this->belongsTo('App\User');
+        return $this->hasMany('App\lavora_su');
     }
+    
 }

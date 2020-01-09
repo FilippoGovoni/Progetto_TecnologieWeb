@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="data_inizio">Data di inizio</label>
-                    <input class="form-control" type="date" name="data_inizio" />
+                    <input class="form-control" type="date" name="data_inizio" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>"/>
                 </div>
                 <div class="form-group">
                     <label for="data_inizio">Data di fine</label>
@@ -48,14 +48,6 @@
                     <select class="form-control" name="client_id">
                         @foreach ($clients as $client)
                         <option value="{{ $client->id }}">{{ $client->nome_referente }} {{ $client->cognome_referente }} {{ $client->PIVA }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="user_id">Utente</label>
-                    <select class="form-control" name="user_id">
-                        @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }} {{ $user->surname }}</option>
                         @endforeach
                     </select>
                 </div>

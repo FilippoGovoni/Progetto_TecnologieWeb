@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCostoOrarioToProjectsTable extends Migration
+class RemoveUserIdToProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddCostoOrarioToProjectsTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->decimal("costo_orario",5,2);
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
         });
     }
 
