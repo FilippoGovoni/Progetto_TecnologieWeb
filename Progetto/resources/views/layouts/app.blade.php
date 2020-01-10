@@ -72,7 +72,7 @@
                         </li>
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Visualizza attività</a>
+                            <a class="nav-link" href="{{ URL::action('SchedaoreController@index') }}">Visualizza attività</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navBarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

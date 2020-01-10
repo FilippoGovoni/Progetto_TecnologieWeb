@@ -20,7 +20,8 @@ class SchedaoreController extends Controller
     public function create()
     {   
         $elements= lavora_su::all();
-        return view('schedaore.create',compact('elements'));
+        $schede=SchedaOre::all();
+        return view('schedaore.create',compact('elements','schede'));
     }
 
    
@@ -29,7 +30,7 @@ class SchedaoreController extends Controller
 
         $input=$request->all();
         $validator=Validator::make($input,[
-            'data_scheda'=>'required|date',
+            'data_scheda'=>'required|date|unique:scheda_ores,data_scheda',
             'hours_work'=>'required|min:0',
             'note'   => 'required|max:255',
             'project_name'   => 'required|exists:projects,name',
@@ -40,6 +41,7 @@ class SchedaoreController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
 
         SchedaOre::create($input);
         return redirect('schedaore');

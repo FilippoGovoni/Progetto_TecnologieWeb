@@ -44,11 +44,9 @@
             </div>
 
             <input type="hidden" name="user_id" value="{{ Auth::user()->id  }}">
-                
-
 
             <input class="btn btn-primary" type="submit" value="Conferma scheda ore">
-
+            
         </form>
         @else
             <h1>NON SONO ANCORA STATI ASSEGNATI PROGETTI</h1>

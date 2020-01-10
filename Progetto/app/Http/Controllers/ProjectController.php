@@ -22,8 +22,9 @@ class ProjectController extends Controller
     {
         $elements=Project::all();
         $lavora= lavora_su::all();
+        $schede= SchedaOre::all();
 
-        return view('project.index',compact('elements','lavora'));
+        return view('project.index',compact('elements','lavora','schede'));
     }
 
     /**
