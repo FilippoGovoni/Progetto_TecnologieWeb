@@ -9,21 +9,36 @@
             <p>Nome: <b>{{ $elemento->name }}</b> </p>
             <p>Descrizione: <b>{{ $elemento->description }}</b> </p>
             <p>Note: <b>{{ $elemento->notes }}</b> </p>
-            <p>Data_inizio: <b>{{ $elemento->data_inizio }}</b> </p>
-            <p>data_fine: <b>{{ $elemento->data_fine }}</b> </p>
+            <p>Data_inizio: <b>{{ date('d-m-yy', strtotime($elemento->data_inizio)) }}</b> </p>
+            <p>data_fine: <b>{{ date('d-m-yy', strtotime($elemento->data_fine)) }}</b> </p>
             <p>Cliente: <b>{{ $elemento->client->PIVA }}</b> </p><br>
             @if(count($utenti) > 0)
             <p>Utenti che lavorano al progetto: </p>
-            <ul class="list-group">
-            @foreach ($utenti as $user)    
-                <li class="list-group-item">{{$user->user->name}} {{$user->user->surname}}</li>
-            @endforeach    
-            </ul>
-            @else
-            <p> Nessun utente è stato assegnato al progetto </p><br>
-            <a href="{{ URL::action('ProjectController@edit', $elemento->id) }}" class="btn btn-secondary btn-sm"> Assegna </a>
-            @endif
-            
+            <table class="table table-sm table-dark">
+                <ul class="list-group">
+                    @foreach ($utenti as $user)
+                    <tr>
+                        <td >{{$user->user->name}} {{$user->user->surname}}</td>
+                            <form action="{{ URL::action('ProjectController@elimina_user_assegnato') }}" method="GET">
+                                <input type="hidden" name="project_id" value="{{ $elemento->id  }}">
+                                <input type="hidden" name="user_id" value="{{ $user->id  }}">
+                                <td><input class="btn btn-danger" type="submit" value="X"></td>
+                            </form>
+                    </tr>
+                    @endforeach
+
+                </ul>
+                @else
+                <tr>
+                    <td>
+                        <p> Nessun utente è stato assegnato al progetto </p><br>
+                    </td>
+                <tr>
+                <tr>
+                    <td><a href="{{ URL::action('ProjectController@assegna', $elemento->id) }}" class="btn btn-secondary btn-sm"> Assegna </a></td>
+                <tr>
+                    @endif
+            </table>
         </div>
     </div>
 </div>

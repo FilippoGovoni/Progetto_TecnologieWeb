@@ -29,7 +29,7 @@
 
                         <td>
                             <a href="{{ URL::action('ProjectController@show', $element->id) }}" class="btn btn-primary btn-sm"> Vedi </a>
-                            <a href="{{ URL::action('ProjectController@edit', $element->id) }}" class="btn btn-secondary btn-sm"> Assegna </a>
+                            <a href="{{ URL::action('ProjectController@assegna', $element->id) }}" class="btn btn-secondary btn-sm"> Assegna </a>
                             <a href="{{ URL::action('ProjectController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
                         </td>
                     </tr>

@@ -26,6 +26,19 @@ class ProjectController extends Controller
 
         return view('project.index',compact('elements','lavora','schede'));
     }
+    public function research()
+    {
+        return view("project.research");
+    }
+    public function ore_progetto(Request $request){
+
+        $data_inizio=$request->data_inizio;
+        $data_fine=$request->data_fine;
+        $progetti= Project::all();
+        $schede_ore=SchedaOre::all()->where('data_scheda','>=',$data_inizio)->where('data_scheda','<=',$data_fine);
+        
+        return view("project.ore_progetto",compact('data_inizio','data_fine','progetti','schede_ore'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -90,12 +103,25 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function assegna($id)
     {
         $project=Project::find($id);
+        $associazioni=lavora_su::all()->where('project_id','=',$id);
         $users=User::all();
 
-        return view('project.edit',compact('project','users'));
+        return view('project.assegna',compact('project','users','associazioni'));
+    }
+    public function elimina_user_assegnato(Request $request)
+    {
+        $project=$request->project_id;
+        $id=$request->user_id;
+        lavora_su::find($id)->where('project_id','=',$project)->delete();
+
+        return redirect("/project");
+    }
+    public function edit($id)
+    {
+        //
     }
 
     /**

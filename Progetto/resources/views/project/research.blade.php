@@ -17,8 +17,7 @@
                 </div>
             @endif
 
-            <form action="{{ URL::action('ResearchController@store') }}" method="POST">
-                {{ csrf_field() }}
+            <form action="{{ URL::action('ProjectController@ore_progetto') }}" method="GET">
                 
                 <div class="form-group">
                     <label for="data_inizio">Data di inizio</label>

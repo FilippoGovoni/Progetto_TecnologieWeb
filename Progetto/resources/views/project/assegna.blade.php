@@ -12,11 +12,20 @@
                 <h5>Progetto selezionato: </h5>
                <p>Nome: {{$project->name}}</p>
                <p>Descrizione: {{$project->description}}</p><br>
+               <?php $i=0 ?>
                <div class="form-group">
                     <label for="user_id">Seleziona l'utente a cui assegnarlo</label>
                     <select class="form-control" name="user_id">
                         @foreach ($users as $user)
+                        @foreach($associazioni as $a)
+                        @if($user->id == $a->user_id)
+                        <?php $i++;?>
+                        @endif
+                        @endforeach
+                        @if($i==0)
                         <option value="{{ $user->id }}">{{ $user->name }} {{ $user->surname }}</option>
+                        @endif
+                        <?php $i=0;?>
                         @endforeach
                     </select>
                 </div>

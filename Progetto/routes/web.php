@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('client','ClientController',['all']); 
-Route::resource('admin','AdminController',['only',['index','create','store','destroy']]); 
+Route::resource('admin','AdminController',['only',['index','create','store','destroy']]);
+Route::get('/research', 'ProjectController@research');
+Route::get('/ore_progetto', 'ProjectController@ore_progetto');
+Route::get('/assegna/{id}', 'ProjectController@assegna');
+Route::get('/elimina_user_assegnato', 'ProjectController@elimina_user_assegnato');
 Route::resource('project','ProjectController',['all']);
-Route::resource('research','ResearchController',['only',['index','store']]);  
 Route::resource('schedaore','SchedaoreController');
 Auth::routes();
 
