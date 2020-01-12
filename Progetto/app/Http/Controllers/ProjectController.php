@@ -111,10 +111,10 @@ class ProjectController extends Controller
 
         return view('project.assegna',compact('project','users','associazioni'));
     }
-    public function elimina_user_assegnato(Request $request)
+    public function elimina_user_assegnato($id,$user_id)
     {
-        $project=$request->project_id;
-        $id=$request->user_id;
+        $project=$id;
+        $id=$user_id;
         lavora_su::find($id)->where('project_id','=',$project)->delete();
 
         return redirect("/project");

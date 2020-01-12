@@ -19,11 +19,7 @@
                     @foreach ($utenti as $user)
                     <tr>
                         <td >{{$user->user->name}} {{$user->user->surname}}</td>
-                            <form action="{{ URL::action('ProjectController@elimina_user_assegnato') }}" method="GET">
-                                <input type="hidden" name="project_id" value="{{ $elemento->id  }}">
-                                <input type="hidden" name="user_id" value="{{ $user->id  }}">
-                                <td><input class="btn btn-danger" type="submit" value="X"></td>
-                            </form>
+                        <td><a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->id]) }}" class="btn btn-danger btn-sm"> X </a></td>
                     </tr>
                     @endforeach
 
