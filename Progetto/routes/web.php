@@ -19,7 +19,7 @@ Route::resource('admin','AdminController',['only',['index','create','store','des
 Route::get('/research', 'ProjectController@research');
 Route::get('/ore_progetto', 'ProjectController@ore_progetto');
 Route::get('/assegna/{id}', 'ProjectController@assegna');
-Route::get('/elimina_user_assegnato/{id}/{user_id}', 'ProjectController@elimina_user_assegnato');
+Route::get('/elimina_user_assegnato/{project_id}/{user_id}', 'ProjectController@elimina_user_assegnato');
 Route::resource('project','ProjectController',['all']);
 Route::resource('schedaore','SchedaoreController');
 Auth::routes();

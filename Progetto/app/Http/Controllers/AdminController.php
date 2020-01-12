@@ -100,9 +100,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $elemento = User::find($id);
-        $elemento->delete();
+        User::find($id)->delete();
 
-        redirect("\admin");
+       
+        return redirect ("/admin");
     }
 }

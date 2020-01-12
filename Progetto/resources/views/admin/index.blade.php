@@ -28,7 +28,15 @@
                         @endif
 
                         <td>
-                            <a href="{{ URL::action('AdminController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
+                        <form method="POST" action="/admin/{{ $element->id}}">
+                                @method('DELETE')  
+                                @csrf
+                                <div class="field">
+                                    <div class="control">
+                                        <button type="submit" class="btn btn-danger btn-sm btn-delete">Elimina Utente</button>
+                                    </div>
+                                </div> 
+                            </form>
                         </td>
                     </tr>
                     @endforeach

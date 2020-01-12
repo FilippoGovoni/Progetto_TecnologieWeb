@@ -30,7 +30,21 @@
                         <td>
                             <a href="{{ URL::action('ProjectController@show', $element->id) }}" class="btn btn-primary btn-sm"> Vedi </a>
                             <a href="{{ URL::action('ProjectController@assegna', $element->id) }}" class="btn btn-secondary btn-sm"> Assegna </a>
-                            <a href="{{ URL::action('ProjectController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" data-id="{{ $element->id }}"> Cancella </a>
+                            <!--<form method="POST" action="/project/{{ $element->id}}">
+                                @method('DELETE')  
+                                @csrf
+                                    <a href="{{ URL::action('ProjectController@destroy', $element->id) }}" class="btn btn-danger btn-sm btn-delete" > Cancella </a>
+                            </form>-->
+
+                            <form method="POST" action="/project/{{ $element->id}}">
+                                @method('DELETE')  
+                                @csrf
+                                <div class="field">
+                                    <div class="control">
+                                        <button type="submit" class="btn btn-danger btn-sm btn-delete">Elimina</button>
+                                    </div>
+                                </div> 
+                            </form>
                         </td>
                     </tr>
                     @else

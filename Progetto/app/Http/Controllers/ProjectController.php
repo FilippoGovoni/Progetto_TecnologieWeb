@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
-
+use Log;
 use App\Client;
 use App\User;
 use App\Project;
@@ -108,17 +108,15 @@ class ProjectController extends Controller
         $project=Project::find($id);
         $associazioni=lavora_su::all()->where('project_id','=',$id);
         $users=User::all();
-
         return view('project.assegna',compact('project','users','associazioni'));
     }
-    public function elimina_user_assegnato($id,$user_id)
+    public function elimina_user_assegnato($project_id,$user_id)
     {
-        $project=$id;
-        $id=$user_id;
-        lavora_su::find($id)->where('project_id','=',$project)->delete();
+        lavora_su::where('project_id',$project_id)->where('user_id',$user_id)->delete();
 
-        return redirect("/project");
+        return redirect()->action('ProjectController@show',$project_id);
     }
+
     public function edit($id)
     {
         //
@@ -138,7 +136,7 @@ class ProjectController extends Controller
         
         lavora_su::create(['user_id'=>$user_id,'project_id'=>$project_id]);
 
-        return redirect("/project");
+        return redirect()->action('ProjectController@show',$project_id);;
     }
 
     /**

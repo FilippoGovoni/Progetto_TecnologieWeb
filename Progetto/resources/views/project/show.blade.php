@@ -19,7 +19,10 @@
                     @foreach ($utenti as $user)
                     <tr>
                         <td >{{$user->user->name}} {{$user->user->surname}}</td>
-                        <td><a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->id]) }}" class="btn btn-danger btn-sm"> X </a></td>
+                        <td>
+                            @csrf
+                            <a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->user->id]) }}" class="btn btn-danger btn-sm"> X </a>
+                        </td>
                     </tr>
                     @endforeach
 
@@ -35,6 +38,11 @@
                 <tr>
                     @endif
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary float-md-right" href="{{ URL::action('ProjectController@index') }}">Torna a Progetti</a>
         </div>
     </div>
 </div>
