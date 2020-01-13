@@ -24,8 +24,8 @@
                     @if(Auth::user()->role == 1)
                     <?php $i++;?>
                     <tr>
-                        <td>{{ $element->name }}</td>
-                        <td>{{ $element->client->PIVA }}</td>
+                        <td><b>{{ $element->name }}</b></td>
+                        <td><b>{{ $element->client->PIVA }}</b></td>
 
                         <td>
                             <a href="{{ URL::action('ProjectController@show', $element->id) }}" class="btn btn-primary btn-sm"> Vedi </a>
@@ -57,18 +57,19 @@
                     @if($j >0)
                     <?php $hour_counter=0; ?>
                     <tr>
-                        <td>{{ $element->name }}</td>
-                        <td>{{ $element->client->PIVA }}</td>
+                        <td><b>{{ $element->name }}</b></td>
+                        <td><b>{{ $element->client->PIVA }}</b></td>
                         @foreach ($schede as $scheda)
                             @if($scheda->project_name == $element->name)
                                 <?php $hour_counter=$hour_counter+$scheda->hours_work; ?>        
                             @endif                        
                         @endforeach
 
-                        <td><?php echo $hour_counter;?> </td>
+                        <td><b><?php echo $hour_counter;?> </b></td>
                    
                     </tr>
                     @endif
+                    <?php $j=0;?>
                     @endif
                     @endforeach
                 

@@ -6,16 +6,6 @@
     <div class="row">
         <div class="col-md-6">
             <h1>Visualizza le ore spese per ogni progetto</h1>
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <?php $data = date('Y-m-d');?>
             <form action="{{ URL::action('ProjectController@ore_progetto') }}" method="GET">
                 

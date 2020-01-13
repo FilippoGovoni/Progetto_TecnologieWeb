@@ -12,7 +12,7 @@ class SchedaoreController extends Controller
     
     public function index()
     {
-        $schede=SchedaOre::all();
+        $schede=SchedaOre::orderBy('data_scheda')->get();
         return view('schedaore.index',compact('schede'));
     }
 

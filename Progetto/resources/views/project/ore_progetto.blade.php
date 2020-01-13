@@ -8,12 +8,12 @@
 </style>
 <div class="row">
     <div class="col-md-6">
-        <p>
+        <span>
             <h1>Periodo selezionato: <h3>{{ date('d/m/yy', strtotime($data_inizio)) }} - {{ date('d/m/yy', strtotime($data_fine)) }}</h3>
             </h1>
-        </p>
+        </span>
     </div>
-</div>
+</div><br>
 <div class="row">
         <?php $totale = 0; ?>
         @if(count($schede_ore)>0)
@@ -27,7 +27,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{$p->name}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{$p->description}}</h6>
-                <p class="card-text">Totale ore spese sul progetto {{$totale}}</p>
+                <p class="card-text">Totale ore spese sul progetto: <b>{{$totale}}</b></p>
             </div>
         </div>
         <?php $totale = 0; ?>

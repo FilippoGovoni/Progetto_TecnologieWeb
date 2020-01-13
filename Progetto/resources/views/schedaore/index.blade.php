@@ -7,7 +7,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Utente</th>
                         <th scope="col">Nome Progetto</th>
                         <th scope="col">Data Scheda</th>
                         <th scope="col">Ore di Lavoro</th>
@@ -19,9 +18,8 @@
                     @foreach ($schede as $el)
                     @if(Auth::user()->id == $el->user_id)
                         <tr>
-                            <td>{{ Auth::user()->name }} </td>
                             <td>{{ $el->project_name}} </td>
-                            <td>{{ $el->data_scheda}}</td>
+                            <td>{{ date('d-m-yy', strtotime($el->data_scheda))}}</td>
                             <td>{{ $el->hours_work}}</td>
                             <td>{{ $el->note}}</td>
                             <td>
