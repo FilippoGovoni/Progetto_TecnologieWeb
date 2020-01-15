@@ -5,16 +5,40 @@
     #card {
         float: left;
     }
+
+    #card1 {
+        margin-right: 15px;
+    }
 </style>
-<div class="row">
-    <div class="col-md-6">
-        <span>
-            <h1>Periodo selezionato: <h3>{{ date('d/m/yy', strtotime($data_inizio)) }} - {{ date('d/m/yy', strtotime($data_fine)) }}</h3>
-            </h1>
-        </span>
-    </div>
-</div><br>
-<div class="row">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <?php $data = date('Y-m-d'); ?>
+            <form action="{{ URL::action('ProjectController@ore_progetto') }}" method="GET">
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span id="periodo" class="input-group-text">Periodo</span>
+                    </div>
+                    <input type="date" name="data_inizio" aria-label="data_inizio" class="form-control" value=<?php echo date('Y-m-01') ?>>
+                    <input id="dat_fin" type="date" name="data_fine" aria-label="data_fine" class="form-control" value=<?php echo date("Y-m-t", strtotime($data)) ?>>
+                    <span>
+                        <select id="tipo" class="form-control" name="tipologia">
+                            <option value="1">Progetti</option>
+                            <option value="2">Clienti</option>
+                        </select>
+                    </span>
+                </div>
+
+                <div>
+                    <input id="ok" class="btn btn-primary" type="submit" value="Cerca">
+                </div>
+            </form>
+        </div>
+    </div><br>
+    @if($tipologia==1)
+
+    <div class="row">
         <?php $totale = 0; ?>
         @if(count($schede_ore)>0)
         @foreach($progetti as $p)
@@ -23,11 +47,11 @@
         <?php $totale = $totale + $s->hours_work; ?>
         @endif
         @endforeach
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{$p->name}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{$p->description}}</h6>
-                <p class="card-text">Totale ore spese sul progetto: <b>{{$totale}}</b></p>
+        <div id="card1" class="card border-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{$p->name}}</div>
+            <div class="card-body text-secondary">
+                <h5 class="card-title">{{$p->description}}</h5>
+                <p class="card-text">Totale ore spese sul progetto: <b>{{$totale}} ore</b></p>
             </div>
         </div>
         <?php $totale = 0; ?>
@@ -35,5 +59,30 @@
         @else
         Non sono state inserite schede_ore nel periodo selezionato
         @endif
+    </div>
+
+    @else
+    <?php $totale = 0; ?>
+    <div class="row">
+        @foreach($clienti as $cliente)
+        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{$cliente->nome_referente}} {{$cliente->PIVA}}</div>
+            <div class="card-body text-secondary">
+                @foreach($progetti as $p)
+                @if($cliente->id == $p->client->id)
+                @foreach($schede_ore as $s)
+                @if($s->project_name == $p->name)
+                <?php $totale = $totale + $s->hours_work; ?>
+                @endif
+                @endforeach
+                @endif
+                @endforeach
+                <p class="card-text"> Totale ore spese sui progetti del cliente: <b>{{$totale}} ore</b></p>
+            </div>
+        </div>
+        <?php $totale=0;?>
+        @endforeach
+    </div>
+    @endif
 </div>
 @endsection

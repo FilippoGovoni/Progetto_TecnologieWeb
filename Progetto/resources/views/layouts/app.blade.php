@@ -42,7 +42,7 @@
                         @if (Route::has('login'))
                         @auth
                         @if(Auth::user()->role == 1)
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown bg-dark">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Utenti
                             </a>
@@ -66,9 +66,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
-                                <a class="dropdown-item" href="{{URL::action('ProjectController@research')}}">Visualizza ore utilizzate per i Progetti</a>
                                 <a class="dropdown-item" href="{{ URL::action('ProjectController@create') }}">Inserisci Progetti</a>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{URL::action('ProjectController@research')}}">Visualizza statistiche ore</a>
                         </li>
                         @else
                         <li class="nav-item">

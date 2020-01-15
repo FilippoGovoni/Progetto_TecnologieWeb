@@ -34,10 +34,13 @@ class ProjectController extends Controller
 
         $data_inizio=$request->data_inizio;
         $data_fine=$request->data_fine;
+        $tipologia=$request->tipologia;
         $progetti= Project::all();
+        $clienti=Client::all();
         $schede_ore=SchedaOre::all()->where('data_scheda','>=',$data_inizio)->where('data_scheda','<=',$data_fine);
         
-        return view("project.ore_progetto",compact('data_inizio','data_fine','progetti','schede_ore'));
+        return view("project.ore_progetto",compact('data_inizio','data_fine','progetti','schede_ore','clienti','tipologia'));
+        
     }
 
     /**
