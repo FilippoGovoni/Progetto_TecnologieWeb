@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /*
+        $data = date('Y-m-d');
+        $progetti=Project::all()->where('data_fine','<=',$data);
+        $progetti->update(['tipologia'=>'1']);*/
+
         return view('home');
     }
 }

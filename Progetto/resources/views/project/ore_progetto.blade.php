@@ -53,6 +53,8 @@
         <div class="card-body text-secondary">
             <h5 class="card-title">{{$p->description}}</h5>
             <p class="card-text">Totale ore spese sul progetto: <b>{{$totale}} ore</b></p>
+            <?php $totale= $totale*$p->costo_orario;?>
+            <p class="card-text">Costo del progetto: <b>{{$totale}} €</b></p>
         </div>
     </div>
     <?php $totale = 0; ?>
