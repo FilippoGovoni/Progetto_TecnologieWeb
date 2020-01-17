@@ -48,10 +48,11 @@
                         </td>
                     </tr>
                     @else
-                    <?php $i++;?>
+                    
                         @foreach ($lavora as $l)
                             @if((Auth::user()->id == $l->user_id) && ($element->id == $l->project_id))
                             <?php $j++;?> 
+                            <?php $i++;?>
                             @endif 
                         @endforeach
                     @if($j >0)
@@ -60,7 +61,7 @@
                         <td><b>{{ $element->name }}</b></td>
                         <td><b>{{ $element->client->PIVA }}</b></td>
                         @foreach ($schede as $scheda)
-                            @if($scheda->project_name == $element->name)
+                            @if(($scheda->project_name == $element->name) && (Auth::user()->id == $scheda->user_id))
                                 <?php $hour_counter=$hour_counter+$scheda->hours_work; ?>        
                             @endif                        
                         @endforeach
@@ -73,9 +74,9 @@
                     @endif
                     @endforeach
                 
-            <?php if($i==0) {?>
-            <tr><td><p>Non hai progetti assegnati</p></td></tr>
-            <?php } ?>
+            @if($i==0)
+            <tr><td><p><b>Non hai progetti assegnati</b></p></td></tr>
+            @endif
             </tbody>
             </table>
             @else 

@@ -4,6 +4,7 @@
 <div class="row">
     <div class="col-md-12">
         @if(count($schede)>0)
+        <?php $i=0;?>
             <table class="table">
                 <thead>
                     <tr>
@@ -17,6 +18,7 @@
                 <tbody>
                     @foreach ($schede as $el)
                     @if(Auth::user()->id == $el->user_id)
+                    <?php $i++;?>
                         <tr>
                             <td>{{ $el->project_name}} </td>
                             <td>{{ date('d-m-yy', strtotime($el->data_scheda))}}</td>
@@ -37,6 +39,9 @@
                         </tr>
                     @endif
                     @endforeach
+                    @if($i==0)
+                    <tr><td><p><b>Non hai ancora creato una scheda ore </b></p></td></tr>
+                    @endif
                 </tbody>
             </table>
         @else

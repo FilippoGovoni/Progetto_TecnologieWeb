@@ -28,7 +28,7 @@
 
                 </div><br>
                 <span>
-                        <select id="tipo" class="form-control" name="tipologia">
+                        <select class="form-control" name="tipologia">
                             <option value="1">Visualizza il totale ore speso per ogni progetto</option>
                             <option value="2">Visualizza il totale ore speso per ogni cliente</option>
                         </select>

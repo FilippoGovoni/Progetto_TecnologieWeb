@@ -8,6 +8,14 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+#card {
+    float: left;
+}
+
+#tipo {
+    width: 160px;
+}
+
 :root {
     --blue: #3490dc;
     --indigo: #6574cd;
