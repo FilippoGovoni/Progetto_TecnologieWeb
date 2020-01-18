@@ -9,6 +9,8 @@
 <div class="container">
     <div class="col-md-6">
         <h1>Nuova Scheda Ore</h1>
+        
+        
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

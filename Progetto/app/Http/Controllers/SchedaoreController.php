@@ -29,8 +29,23 @@ class SchedaoreController extends Controller
     {
 
         $input=$request->all();
+        
+        $controllo=new Schedaore();
+        $controllo->user_id=request('user_id');
+        $controllo->data_scheda=request('data_scheda');
+        
+        for($i=0; $i < count(SchedaOre::all()) ;$i++){
+            $scheda=SchedaOre::all()[$i];
+            if(($scheda->user_id == $controllo->user_id) &&($scheda->data_scheda == $controllo->data_scheda)){
+                $errors=['Hai già inserito una scheda con questa data'];
+                return back()
+                    ->withErrors($errors)
+                    ->withInput();
+            }
+        }
+
         $validator=Validator::make($input,[
-            'data_scheda'=>'required|date|unique:scheda_ores,data_scheda',
+            'data_scheda'=>'required|date',
             'hours_work'=>'required|min:0',
             'note'   => 'required|max:255',
             'project_name'   => 'required|exists:projects,name',
