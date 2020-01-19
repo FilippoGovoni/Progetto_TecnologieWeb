@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@auth
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -13,16 +13,22 @@
             <p>data_fine: <b>{{ date('d-m-yy', strtotime($elemento->data_fine)) }}</b> </p>
             <p>Cliente: <b>{{ $elemento->client->PIVA }}</b> </p><br>
             @if(count($utenti) > 0)
+            @if($elemento->terminato==1)
+            <p>Utenti che hanno lavorato al progetto: </p>
+            @else
             <p>Utenti che lavorano al progetto: </p>
+            @endif
             <table class="table table-sm table-dark">
                 <ul class="list-group">
                     @foreach ($utenti as $user)
                     <tr>
                         <td >{{$user->user->name}} {{$user->user->surname}}</td>
+                        @if($elemento->terminato==0)
                         <td>
                             @csrf
                             <a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->user->id]) }}" class="btn btn-danger btn-sm"> X </a>
                         </td>
+                        @endif
                     </tr>
                     @endforeach
 
@@ -46,4 +52,21 @@
         </div>
     </div>
 </div>
+@endauth
+@guest 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"></div>
+
+                <div class="card-body">
+                    
+                    <p>Effettua il login per accedere:  <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endguest
 @endsection

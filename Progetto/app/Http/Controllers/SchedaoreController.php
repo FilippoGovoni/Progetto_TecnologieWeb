@@ -43,6 +43,13 @@ class SchedaoreController extends Controller
                     ->withInput();
             }
         }
+        /*$progetto=Project::where('name','=',$request->project_name);
+        if(($request->data_scheda < $progetto->data_inizio) && ($request->data_scheda > $progetto->data_fine)){
+            $errors=['La data inserita contrasta le date del progetto'];
+            return back()
+                ->withErrors($errors)
+                ->withInput();
+        }*/
 
         $validator=Validator::make($input,[
             'data_scheda'=>'required|date',

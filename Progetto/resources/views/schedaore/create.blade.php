@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
 <?php class MAX
 {
     public $max;
@@ -20,7 +21,16 @@
             </ul>
         </div>
         @endif
-        @if ($elements->all()>0)
+        <?php $numero_progetti=0;?>
+            @foreach($elements as $l)
+            @if(Auth::user()->id == $l->user_id)
+            @if($l->project->terminato ==0)
+            <?php $numero_progetti++;?>
+            @endif
+            @endif
+            @endforeach
+
+        @if ($elements->all()>0 && $numero_progetti>0)
         <form action="{{ URL::action('SchedaoreController@store') }}" method="POST">
             {{ csrf_field()}}
 
@@ -33,7 +43,7 @@
             @foreach($elements as $l)
             @if(Auth::user()->id == $l->user_id)
             @foreach($schede as $s)
-            @if($s->project_name == $l->project->name)
+            @if(($s->project_name == $l->project->name) && (Auth::user()->id == $s->user_id) && ($l->project->terminato == 0))
             <?php $totale = $totale + $s->hours_work; ?>
             @endif
             @endforeach
@@ -50,9 +60,9 @@
                     @foreach ($elements as $project)
                     @if( ($project->user_id == Auth::user()->id) && ($project->project->terminato==0))
                     @if($project->project->id == $max->id)
-                    <option value="{{ $project->project->name }}" selected>{{ $project->project->name }}</option>
+                    <option value="{{ $project->project->name }}" selected>{{ $project->project->name }} </option>
                     @else
-                    <option value="{{ $project->project->name }}">{{ $project->project->name }}</option>
+                    <option value="{{ $project->project->name }}">{{ $project->project->name }} </option>
                     @endif
                     @endif
                     @endforeach
@@ -70,14 +80,13 @@
             </div>
 
             <input type="hidden" name="user_id" value="{{ Auth::user()->id  }}">
-
+            
             <input class="btn btn-primary" type="submit" value="Conferma scheda ore">
-
         </form>
         @else
-        <h1>NON SONO ANCORA STATI ASSEGNATI PROGETTI</h1>
+        <h4>Non hai progetti assegnati o i progetti sono terminati</h4>
         @endif
     </div>
 </div>
-
+@endauth
 @endsection('content')

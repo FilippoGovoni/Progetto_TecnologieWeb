@@ -20,6 +20,8 @@ class CreateProjectsTable extends Migration
             $table->string('notes');
             $table->date('data_inizio');
             $table->date('data_fine');
+            $table->decimal("costo_orario",5,2);
+            $table->boolean('terminato')->default('0');
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 

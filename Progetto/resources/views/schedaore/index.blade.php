@@ -72,6 +72,7 @@ body {font-family: Verdana, sans-serif;}
 </style>
 -->
 @section('content')
+@auth
 <div class="row">
     <div class="col-md-12">
         @if(count($schede)>0)
@@ -171,4 +172,5 @@ body {font-family: Verdana, sans-serif;}
 </div>
 </nav>
 -->
+@endauth
 @endsection

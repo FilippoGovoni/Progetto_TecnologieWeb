@@ -71,6 +71,7 @@ class ProjectController extends Controller
             'description'        => 'required|max:255',
             'notes'   => 'required|max:50',
             'data_inizio'   => 'required|date',
+            'data_fine'   => 'required|date|after:data_inizio',
             'costo_orario'   => 'required|min:0',
             'client_id'   => 'required',
         ]);

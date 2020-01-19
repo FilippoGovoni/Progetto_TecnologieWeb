@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@auth
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -17,8 +17,13 @@
                         </td>
                         <td>
                             <select id="tipo" class="form-control" name="tipologia">
-                                <option value="1">Progetti</option>
+                            @if($tipologia==1)
+                                <option value="1" selected>Progetti</option>
                                 <option value="2">Clienti</option>
+                            @else
+                                <option value="1">Progetti</option>
+                                <option value="2" selected>Clienti</option>
+                            @endif
                             </select>
                         </td>
                         </td>
@@ -53,6 +58,12 @@
         <div class="card-body text-secondary">
             <h5 class="card-title">{{$p->description}}</h5>
             <p class="card-text">Totale ore spese sul progetto: <b>{{$totale}} ore</b></p>
+            <p class="card-text">Stato del progetto: <b>
+                @if($p->terminato==0)
+                <span id="elaborazione">IN ELABORAZIONE</span>
+                @else
+                <span id="terminato">TERMINATO</span>
+                @endif</b></p>
             <?php $totale= $totale*$p->costo_orario;?>
             <p class="card-text">Costo del progetto: <b>{{$totale}} €</b></p>
         </div>
@@ -88,4 +99,21 @@
 </div>
 @endif
 </div>
+@endauth
+@guest 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"></div>
+
+                <div class="card-body">
+                    
+                    <p>Effettua il login per accedere:  <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endguest
 @endsection

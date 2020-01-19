@@ -8,6 +8,14 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+#terminato {
+    color: green;
+}
+
+#elaborazione {
+    color: rgb(216, 216, 38);
+}
+
 #card {
     float: left;
 }
