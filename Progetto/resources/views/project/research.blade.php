@@ -35,7 +35,7 @@
                         </select>
                     </span>
                 <div><br>
-                    <input id="ok" class="btn btn-primary" type="submit" value="Cerca">
+                <input id="ok" class="btn btn-primary" type="submit" value="Cerca">
                 </div>
             </form>
         </div>

@@ -22,6 +22,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Icone -->
+    <script src="https://kit.fontawesome.com/a697c89225.js" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="../assets/js/jquery-3.2.0.min.js"></script>
 </head>
@@ -66,7 +68,7 @@
                                 Progetti
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ URL::action('ProjectController@index') }}">Mostra Progetti</a>
+                                <a class="dropdown-item" href="{{ URL::action('ProjectController@visualizza',2) }}">Mostra Progetti</a>
                                 <a class="dropdown-item" href="{{ URL::action('ProjectController@create') }}">Inserisci Progetti</a>
                             </div>
                         </li>
@@ -96,7 +98,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::action('ProjectController@index') }}">Riepilogo Progetti</a>
+                            <a class="nav-link" href="{{ URL::action('ProjectController@visualizza','2') }}">Riepilogo Progetti</a>
                         </li>
                         @endif
                         @endauth
@@ -112,9 +114,6 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
                         @endif
                         @else
                         <li class="nav-item dropdown">

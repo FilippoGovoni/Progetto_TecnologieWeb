@@ -20,11 +20,14 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        //
+    }
+    public function visualizza($filtro){
         $elements=Project::all();
         $lavora= lavora_su::all();
         $schede= SchedaOre::all();
 
-        return view('project.index',compact('elements','lavora','schede'));
+        return view('project.index',compact('elements','lavora','schede','filtro'));
     }
     public function research()
     {
@@ -96,9 +99,10 @@ class ProjectController extends Controller
     public function show($id)
     {
         $elemento= Project::find($id);
+        $schede=SchedaOre::all();
         $utenti= lavora_su::all()->where('project_id','=',$id);
 
-        return view("project.show",compact('elemento','utenti'));
+        return view("project.show",compact('elemento','schede','utenti'));
     }
     /**
      * Show the form for editing the specified resource.

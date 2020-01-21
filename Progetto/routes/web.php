@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 Route::resource('client','ClientController',['all']); 
 Route::resource('admin','AdminController',['only',['index','create','store','destroy']]);
+Route::get('/visualizza/{filtro}', 'ProjectController@visualizza');
 Route::get('/research', 'ProjectController@research');
 Route::get('/ore_progetto', 'ProjectController@ore_progetto');
 Route::get('/assegna/{id}', 'ProjectController@assegna');

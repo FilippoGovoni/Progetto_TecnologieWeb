@@ -54,7 +54,7 @@
     @endif
     @endforeach
     <div id="card1" class="card border-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">{{$p->name}}</div>
+        <div class="card-header"><b>{{$p->name}}</b></div>
         <div class="card-body text-secondary">
             <h5 class="card-title">{{$p->description}}</h5>
             <p class="card-text">Totale ore spese sul progetto: <b>{{$totale}} ore</b></p>
@@ -80,7 +80,7 @@
 <div class="row">
     @foreach($clienti as $cliente)
     <div class="card border-secondary mb-3" style="max-width: 18rem;">
-        <div class="card-header">{{$cliente->nome_referente}} {{$cliente->PIVA}}</div>
+        <div class="card-header"><b>{{$cliente->nome_referente}} {{$cliente->PIVA}}</b></div>
         <div class="card-body text-secondary">
             @foreach($progetti as $p)
             @if($cliente->id == $p->client->id)

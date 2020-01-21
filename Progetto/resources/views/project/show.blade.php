@@ -22,12 +22,22 @@
                 <ul class="list-group">
                     @foreach ($utenti as $user)
                     <tr>
-                        <td >{{$user->user->name}} {{$user->user->surname}}</td>
+                        <td>{{$user->user->name}} {{$user->user->surname}}</td>
                         @if($elemento->terminato==0)
                         <td>
                             @csrf
-                            <a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->user->id]) }}" class="btn btn-danger btn-sm"> X </a>
+                            <a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->user->id]) }}" class="btn btn-danger btn-sm"> <i class="fas fa-user-times"></i> </a>
                         </td>
+                        @else
+                        <?php $totale = 0; ?>
+
+                        @foreach($schede as $s)
+                        @if(($s->project_name == $elemento->name) && ($s->user_id == $user->id))
+                        <?php $totale = $totale + $s->hours_work; ?>
+                        @endif
+                        @endforeach
+                        <td>Totale ore lavorate dall'utente: <b>{{ $totale }}</b></td>
+
                         @endif
                     </tr>
                     @endforeach
@@ -53,7 +63,7 @@
     </div>
 </div>
 @endauth
-@guest 
+@guest
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -61,8 +71,8 @@
                 <div class="card-header"></div>
 
                 <div class="card-body">
-                    
-                    <p>Effettua il login per accedere:  <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a> </p>
+
+                    <p>Effettua il login per accedere: <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a> </p>
                 </div>
             </div>
         </div>

@@ -8,6 +8,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+#elenco {
+    font-size: 20px;
+}
+
 #terminato {
     color: green;
 }
@@ -16,8 +20,9 @@
     color: rgb(216, 216, 38);
 }
 
-#card {
+.card {
     float: left;
+    margin-left: 15px;
 }
 
 #tipo {

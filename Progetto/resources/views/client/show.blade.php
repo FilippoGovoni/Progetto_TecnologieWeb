@@ -6,15 +6,15 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Dettagli del cliente</h1><br>
-            <p>Ragione sociale: {{ $elemento->ragione_sociale }} </p>
-            <p>Nome referente: {{ $elemento->nome_referente }} </p>
-            <p>Cognome referente: {{ $elemento->cognome_referente }} </p>
-            <p>Email referente: {{ $elemento->Email_referente }} </p>
-            <p>SSID: {{ $elemento->SSID }} </p>
-            <p>PEC: {{ $elemento->PEC }} </p>
-            <p>Partita IVA: {{ $elemento->PIVA }} </p>
+            <p>Ragione sociale: <b>{{ $elemento->ragione_sociale }}</b> </p>
+            <p>Nome referente: <b>{{ $elemento->nome_referente }}</b>  </p>
+            <p>Cognome referente: <b>{{ $elemento->cognome_referente }}</b>  </p>
+            <p>Email referente: <b>{{ $elemento->Email_referente }}</b>  </p>
+            <p>SSID: <b>{{ $elemento->SSID }}</b>  </p>
+            <p>PEC: <b>{{ $elemento->PEC }}</b>  </p>
+            <p>Partita IVA: <b>{{ $elemento->PIVA }}</b>  </p>
 
-            <p>L'elemento è stato inserito il: {{ date('d/m/Y', strtotime($elemento->created_at)) }}</p>
+            <p>L'elemento è stato inserito il: <b> {{ date('d/m/Y', strtotime($elemento->created_at)) }}</b> </p>
         </div>
     </div>
     <div class="row">
