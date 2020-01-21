@@ -92,7 +92,7 @@ body {font-family: Verdana, sans-serif;}
                     @if(Auth::user()->id == $el->user_id)
                     <?php $i++;?>
                         <tr>
-                            <td>{{ $el->project_name}} </td>
+                            <td>{{ $el->project->name}} </td>
                             <td>{{ date('d-m-yy', strtotime($el->data_scheda))}}</td>
                             <td>{{ $el->hours_work}}</td>
                             <td>{{ $el->note}}</td>

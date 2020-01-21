@@ -87,7 +87,7 @@ class ProjectController extends Controller
 
         Project::create($input);
         
-        return redirect('/project');
+        return redirect('/visualizza/2');
     }
 
     /**
@@ -156,6 +156,6 @@ class ProjectController extends Controller
     {
         Project::find($id)->delete();
 
-        return redirect("/project");
+        return redirect("/visualizza/2");
     }
 }

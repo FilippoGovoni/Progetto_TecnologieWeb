@@ -49,7 +49,7 @@
     @if(count($schede_ore)>0)
     @foreach($progetti as $p)
     @foreach($schede_ore as $s)
-    @if($s->project_name == $p->name)
+    @if($s->project_id == $p->id)
     <?php $totale = $totale + $s->hours_work; ?>
     @endif
     @endforeach
@@ -79,13 +79,13 @@
 <?php $totale = 0; ?>
 <div class="row">
     @foreach($clienti as $cliente)
-    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+    <div id="card2" class="card border-secondary mb-3" style="max-width: 18rem;">
         <div class="card-header"><b>{{$cliente->nome_referente}} {{$cliente->PIVA}}</b></div>
         <div class="card-body text-secondary">
             @foreach($progetti as $p)
             @if($cliente->id == $p->client->id)
             @foreach($schede_ore as $s)
-            @if($s->project_name == $p->name)
+            @if($s->project_id == $p->id)
             <?php $totale = $totale + $s->hours_work; ?>
             @endif
             @endforeach

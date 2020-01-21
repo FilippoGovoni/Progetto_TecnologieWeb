@@ -32,7 +32,7 @@
                         <?php $totale = 0; ?>
 
                         @foreach($schede as $s)
-                        @if(($s->project_name == $elemento->name) && ($s->user_id == $user->id))
+                        @if(($s->project_id == $elemento->id) && ($s->user_id == $user->id))
                         <?php $totale = $totale + $s->hours_work; ?>
                         @endif
                         @endforeach
@@ -46,7 +46,7 @@
                 @else
                 <tr>
                     <td>
-                        <p> Nessun utente è stato assegnato al progetto </p><br>
+                        <p> <b>Nessun utente è stato assegnato al progetto</b> </p><br>
                     </td>
                 <tr>
                 <tr>

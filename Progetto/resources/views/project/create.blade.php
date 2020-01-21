@@ -52,7 +52,7 @@
                     </select>
                 </div>
                 <div>
-                    <input class="btn btn-primary" type="submit" value="Invia">
+                    <input class="btn btn-primary" type="submit" value="Crea Progetto">
                 </div>
             </form>
         </div>

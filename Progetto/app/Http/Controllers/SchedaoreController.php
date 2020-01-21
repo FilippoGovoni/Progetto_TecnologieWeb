@@ -55,7 +55,7 @@ class SchedaoreController extends Controller
             'data_scheda'=>'required|date',
             'hours_work'=>'required|min:0',
             'note'   => 'required|max:255',
-            'project_name'   => 'required|exists:projects,name',
+            'project_id'   => 'required',
             'user_id' =>'required'
         ]);
         if ($validator->fails()) {

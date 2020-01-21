@@ -20,7 +20,17 @@
     color: rgb(216, 216, 38);
 }
 
-.card {
+#elaborazione1 {
+    background-color: yellow;
+    color: rgb(104, 104, 100);
+}
+
+#card1 {
+    float: left;
+    margin-left: 15px;
+}
+
+#card2 {
     float: left;
     margin-left: 15px;
 }

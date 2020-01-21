@@ -16,9 +16,10 @@ class CreateSchedaOresTable extends Migration
         Schema::create('scheda_ores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('data_scheda');
-            $table->string('project_name');
             $table->Integer('hours_work');
             $table->longText('note');
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->default('1');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

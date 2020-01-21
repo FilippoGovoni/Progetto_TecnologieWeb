@@ -9,6 +9,11 @@ class SchedaOre extends Model
     protected $fillable=['data_scheda',
     'hours_work',
     'note',
-    'project_name',
+    'project_id',
     'user_id'];
+
+    public function project()
+    {
+        return $this->belongsTo('App\Project');
+    }
 }

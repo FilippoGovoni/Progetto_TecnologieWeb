@@ -43,7 +43,7 @@
             @foreach($elements as $l)
             @if(Auth::user()->id == $l->user_id)
             @foreach($schede as $s)
-            @if(($s->project_name == $l->project->name) && (Auth::user()->id == $s->user_id) && ($l->project->terminato == 0))
+            @if(($s->project_id == $l->project->id) && (Auth::user()->id == $s->user_id) && ($l->project->terminato == 0))
             <?php $totale = $totale + $s->hours_work; ?>
             @endif
             @endforeach
@@ -55,14 +55,14 @@
             @endif
             @endforeach
             <div class="form-group">
-                <label for="project_name">Progetto</label>
-                <select class="form-control" name="project_name">
+                <label for="project_id">Progetto</label>
+                <select class="form-control" name="project_id">
                     @foreach ($elements as $project)
                     @if( ($project->user_id == Auth::user()->id) && ($project->project->terminato==0))
                     @if($project->project->id == $max->id)
-                    <option value="{{ $project->project->name }}" selected>{{ $project->project->name }} </option>
+                    <option value="{{ $project->project->id }}" selected>{{ $project->project->name }} </option>
                     @else
-                    <option value="{{ $project->project->name }}">{{ $project->project->name }} </option>
+                    <option value="{{ $project->project->id }}">{{ $project->project->name }} </option>
                     @endif
                     @endif
                     @endforeach

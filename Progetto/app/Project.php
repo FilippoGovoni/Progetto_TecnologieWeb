@@ -18,5 +18,9 @@ class Project extends Model
     {
         return $this->hasMany('App\lavora_su');
     }
+    public function schedaOre()
+    {
+        return $this->hasMany('App\SchedaOre');
+    }
     
 }

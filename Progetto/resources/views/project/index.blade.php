@@ -42,7 +42,7 @@ $j = 0; ?>
                     @if($element->terminato==1)
                     <td><button type="button" class="btn btn-success">TERMINATO</button></td>
                     @else
-                    <td><button type="button" class="btn btn-warning">IN ELABORAZIONE</button></td>
+                    <td><button id="elaborazione1" type="button" class="btn btn-secondary">IN ELABORAZIONE  <div class="spinner-border text-secondary" role="status"></div></button></td>
                     @endif
 
 
@@ -78,10 +78,10 @@ $j = 0; ?>
                     @if($element->terminato==1)
                     <td><button type="button" class="btn btn-success">TERMINATO</button></td>
                     @else
-                    <td><button type="button" class="btn btn-warning">IN ELABORAZIONE</button></td>
+                    <td><button id="elaborazione1" type="button" class="btn btn-warning">IN ELABORAZIONE  <div class="spinner-border text-secondary" role="status"></div></button></td>
                     @endif
                     @foreach ($schede as $scheda)
-                    @if(($scheda->project_name == $element->name) && (Auth::user()->id == $scheda->user_id))
+                    @if(($scheda->project_id == $element->id) && (Auth::user()->id == $scheda->user_id))
                     <?php $hour_counter = $hour_counter + $scheda->hours_work; ?>
                     @endif
                     @endforeach
@@ -97,7 +97,11 @@ $j = 0; ?>
                 @if($i==0)
                 <tr>
                     <td>
+                        @if($filtro==0)
                         <p><b>Non hai progetti assegnati</b></p>
+                        @else
+                        <p><b>Non ci sono progetti terminati</b></p>
+                        @endif
                     </td>
                 </tr>
                 @endif
