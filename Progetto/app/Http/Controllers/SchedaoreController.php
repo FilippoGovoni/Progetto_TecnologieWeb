@@ -33,10 +33,11 @@ class SchedaoreController extends Controller
         $controllo=new Schedaore();
         $controllo->user_id=request('user_id');
         $controllo->data_scheda=request('data_scheda');
+        $controllo->project_id=request('project_id');
         
         for($i=0; $i < count(SchedaOre::all()) ;$i++){
             $scheda=SchedaOre::all()[$i];
-            if(($scheda->user_id == $controllo->user_id) &&($scheda->data_scheda == $controllo->data_scheda)){
+            if(($scheda->user_id == $controllo->user_id) &&($scheda->data_scheda == $controllo->data_scheda) && ($scheda->project_id == $controllo->project_id)){
                 $errors=['Hai già inserito una scheda con questa data'];
                 return back()
                     ->withErrors($errors)
