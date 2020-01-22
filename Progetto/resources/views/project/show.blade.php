@@ -28,17 +28,17 @@
                             @csrf
                             <a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->user->id]) }}" class="btn btn-danger btn-sm"> <i class="fas fa-user-times"></i> </a>
                         </td>
-                        @else
+                        @endif
+                        
                         <?php $totale = 0; ?>
 
                         @foreach($schede as $s)
-                        @if(($s->project_id == $elemento->id) && ($s->user_id == $user->id))
+                        @if(($s->project_id == $elemento->id) && ($s->user_id == $user->user_id))
                         <?php $totale = $totale + $s->hours_work; ?>
                         @endif
                         @endforeach
                         <td>Totale ore lavorate dall'utente: <b>{{ $totale }}</b></td>
 
-                        @endif
                     </tr>
                     @endforeach
 
