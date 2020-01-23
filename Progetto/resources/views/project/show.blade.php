@@ -23,12 +23,6 @@
                     @foreach ($utenti as $user)
                     <tr>
                         <td>{{$user->user->name}} {{$user->user->surname}}</td>
-                        @if($elemento->terminato==0)
-                        <td>
-                            @csrf
-                            <a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->user->id]) }}" class="btn btn-danger btn-sm"> <i class="fas fa-user-times"></i> </a>
-                        </td>
-                        @endif
                         
                         <?php $totale = 0; ?>
 
@@ -38,6 +32,12 @@
                         @endif
                         @endforeach
                         <td>Totale ore lavorate dall'utente: <b>{{ $totale }}</b></td>
+                        @if($elemento->terminato==0)
+                        <td>
+                            @csrf
+                            <a href="{{ URL::action('ProjectController@elimina_user_assegnato', [$elemento->id,$user->user->id]) }}" class="btn btn-danger btn-sm"> <i class="fas fa-user-times"></i> </a>
+                        </td>
+                        @endif
 
                     </tr>
                     @endforeach

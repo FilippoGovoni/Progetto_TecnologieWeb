@@ -10,12 +10,8 @@
 
                 <div class="card-body">
                     
-                    @if(Auth::user()->role == 1)
-                    <p>Hai effettuato l'accesso</p>  
-                    @else
-                    <p>Hai effettuato l'accesso</p>
-                    @endif
-
+                    <p><b>Hai effettuato l'accesso</b></p>
+                    
                 </div>
             </div>
         </div>

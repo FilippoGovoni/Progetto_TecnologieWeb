@@ -28,10 +28,7 @@
                         </td>
                         </td>
                         <td>
-                            <div>
-                                <input id="ok" class="btn btn-primary" type="submit" value="Cerca">
-                            </div>
-
+                            <button id="cerca" class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                         </td>
         </div>
         </tr>

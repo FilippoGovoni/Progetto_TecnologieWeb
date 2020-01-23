@@ -12,6 +12,10 @@
     font-size: 20px;
 }
 
+#cerca {
+    width: 100%;
+}
+
 #terminato {
     color: green;
 }

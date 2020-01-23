@@ -26,6 +26,7 @@
     <script src="https://kit.fontawesome.com/a697c89225.js" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="../assets/js/jquery-3.2.0.min.js"></script>
+    
 </head>
 
 <body>
@@ -50,8 +51,8 @@
                                 Utenti
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ URL::action('AdminController@index') }}">Mostra Utenti</a>
-                                <a class="dropdown-item" href="{{ URL::action('AdminController@create') }}">Inserisci Utenti</a>
+                                <a class="dropdown-item" href="{{ URL::action('AdminController@index') }}"><i class="fas fa-list-ul"></i> Mostra Utenti</a>
+                                <a class="dropdown-item" href="{{ URL::action('AdminController@create') }}"><i class="fas fa-user-plus"></i> Inserisci Utenti</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -59,8 +60,8 @@
                                 Clienti
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ URL::action('ClientController@index') }}">Mostra Clienti</a>
-                                <a class="dropdown-item" href="{{ URL::action('ClientController@create') }}">Inserisci Clienti</a>
+                                <a class="dropdown-item" href="{{ URL::action('ClientController@index') }}"><i class="fas fa-list-ul"></i> Mostra Clienti</a>
+                                <a class="dropdown-item" href="{{ URL::action('ClientController@create') }}"><i class="fas fa-user-plus"></i> Inserisci Clienti</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -68,8 +69,8 @@
                                 Progetti
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ URL::action('ProjectController@visualizza',2) }}">Mostra Progetti</a>
-                                <a class="dropdown-item" href="{{ URL::action('ProjectController@create') }}">Inserisci Progetti</a>
+                                <a class="dropdown-item" href="{{ URL::action('ProjectController@visualizza',2) }}"><i class="fas fa-list-ul"></i> Mostra Progetti</a>
+                                <a class="dropdown-item" href="{{ URL::action('ProjectController@create') }}"><i class="fas fa-folder-plus"></i> Inserisci Progetti</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -77,12 +78,12 @@
                                 Scheda Ore
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@index') }}">Visualizza le tue schede Ore</a>
-                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@create') }}">Inserisci Una nuova Scheda Ore</a>
+                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@index') }}"><i class="fas fa-list-ul"></i> Visualizza le tue schede Ore</a>
+                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@create') }}"><i class="fas fa-folder-plus"></i> Inserisci una nuova Scheda Ore</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{URL::action('ProjectController@research')}}">Visualizza statistiche ore</a>
+                            <a class="nav-link" href="{{URL::action('ProjectController@research')}}">Visualizza statistiche ore</a>
                         </li>
                         @else
                         <li class="nav-item">
@@ -93,12 +94,12 @@
                                 Scheda Ore
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@index') }}">Visualizza le tue schede Ore</a>
-                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@create') }}">Inserisci Una nuova Scheda Ore</a>
+                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@index') }}"><i class="fas fa-list-ul"></i> Visualizza le tue schede Ore</a>
+                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@create') }}"><i class="fas fa-folder-plus"></i> Inserisci una nuova Scheda Ore</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::action('ProjectController@visualizza','2') }}">Riepilogo Progetti</a>
+                            <a class="nav-link" href="{{ URL::action('ProjectController@visualizza','2') }}"><i class="fas fa-list-ul"></i> Riepilogo Progetti</a>
                         </li>
                         @endif
                         @endauth

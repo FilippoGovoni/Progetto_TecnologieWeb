@@ -35,7 +35,7 @@
                         </select>
                     </span>
                 <div><br>
-                <input id="ok" class="btn btn-primary" type="submit" value="Cerca">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Cerca</button>
                 </div>
             </form>
         </div>

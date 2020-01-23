@@ -2,6 +2,23 @@
 
 @section('content')
 @auth
+<div id="confirmModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Conferma</h2>
+            </div>
+            <div class="modal-body">
+                <h4 align="center" style="margin:0;">Sei sicuro di voler eliminare questo elemento?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancella</button>
+            </div>
+        </div>
+    </div>
+</div>
 <br>
 <ul id="elenco" class="nav nav-pills">
 
@@ -42,7 +59,7 @@ $j = 0; ?>
                     @if($element->terminato==1)
                     <td><button type="button" class="btn btn-success">TERMINATO</button></td>
                     @else
-                    <td><button id="elaborazione1" type="button" class="btn btn-secondary">IN ELABORAZIONE  <div class="spinner-border text-secondary" role="status"></div></button></td>
+                    <td><button id="elaborazione1" type="button" class="btn btn-secondary">IN ELABORAZIONE <div class="spinner-border text-secondary" role="status"></div></button></td>
                     @endif
 
 
@@ -56,7 +73,7 @@ $j = 0; ?>
                             @csrf
                             <div class="field">
                                 <div class="control">
-                                    <button id="delete"type="submit" class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    <button id="delete" type="submit" class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -78,7 +95,7 @@ $j = 0; ?>
                     @if($element->terminato==1)
                     <td><button type="button" class="btn btn-success">TERMINATO</button></td>
                     @else
-                    <td><button id="elaborazione1" type="button" class="btn btn-warning">IN ELABORAZIONE  <div class="spinner-border text-secondary" role="status"></div></button></td>
+                    <td><button id="elaborazione1" type="button" class="btn btn-warning">IN ELABORAZIONE <div class="spinner-border text-secondary" role="status"></div></button></td>
                     @endif
                     @foreach ($schede as $scheda)
                     @if(($scheda->project_id == $element->id) && (Auth::user()->id == $scheda->user_id))
@@ -112,6 +129,28 @@ $j = 0; ?>
         @endif
     </div>
 </div>
+<script>
+    $('#delete').bind('click', function() {
+        event.preventDefault();
+        project_id = $(this).attr('id');
+        $('#confirmModal').modal('show');
+    });
+
+    $('#ok_button').click(function() {
+        $.ajax({
+            url: "project/" + project_id,
+            beforeSend: function() {
+                $('#ok_button').text('Deleting...');
+            },
+            success: function(data) {
+                setTimeout(function() {
+                    $('#confirmModal').modal('hide');
+                    $('#user_table').DataTable().ajax.reload();
+                }, 2000);
+            }
+        })
+    });
+</script>
 @endauth
 @guest
 <div class="container">

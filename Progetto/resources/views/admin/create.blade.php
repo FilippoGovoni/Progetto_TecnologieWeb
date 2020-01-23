@@ -42,14 +42,48 @@
 
 
                 <div>
-                    <input class="btn btn-primary" type="submit" value="Invia">
+                    <input id="ok" class="btn btn-primary" type="submit" value="Invia">
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    /*$(document).ready(function() {
+        $('#ok').on('submit', function(event) {
+            event.preventDefault();
+            if ($('action').val() == 'Invia') {
+                $.ajax({
+                    url: "{{ route('admin.store') }}",
+                    method: 'POST',
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: 'json',
+                    success: function(data) {
+                        var html = ' ';
+                        if (data.errors) {
+                            html = '<div class="alert alert-danger">';
+                            for (var count = 0; count < data.errors.length; count++) {
+                                html += '<p>' + data.errors[count] + '</p>';
+                            }
+                            html += '</div>';
+                        }
+                        if (data.success) {
+                            html = '<div class="alert alert-success">' + data.success + '</div>';
+                            $('#sample_form')[0].reset();
+                            $('#user_table').DataTable().ajax.reload();
+                        }
+                        $('#form_result').html(html);
+                    }
+                })
+            }
+        });
+    });*/
+</script>
 @endauth
-@guest 
+@guest
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -57,8 +91,8 @@
                 <div class="card-header"></div>
 
                 <div class="card-body">
-                    
-                    <p>Effettua il login per accedere:  <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a> </p>
+
+                    <p>Effettua il login per accedere: <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a> </p>
                 </div>
             </div>
         </div>

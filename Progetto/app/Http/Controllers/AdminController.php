@@ -55,8 +55,7 @@ class AdminController extends Controller
 
         User::create($input);
         
-        return redirect('/admin');
-    }
+        return redirect ("/admin");    }
 
     /**
      * Display the specified resource.
