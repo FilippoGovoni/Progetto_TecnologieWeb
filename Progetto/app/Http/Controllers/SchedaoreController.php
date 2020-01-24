@@ -44,6 +44,12 @@ class SchedaoreController extends Controller
                     ->withInput();
             }
         }
+        $progetto=Project::find($controllo->project_id);
+
+        
+        if(($controllo->data_scheda< $progetto->data_inizio) || ($controllo->data_scheda> $progetto->data_fine)){
+            return back()->withErrors(['Data scheda non valida (fuori dalle date del progetto)'])->withInput();
+        }
         /*$progetto=Project::where('name','=',$request->project_name);
         if(($request->data_scheda < $progetto->data_inizio) && ($request->data_scheda > $progetto->data_fine)){
             $errors=['La data inserita contrasta le date del progetto'];

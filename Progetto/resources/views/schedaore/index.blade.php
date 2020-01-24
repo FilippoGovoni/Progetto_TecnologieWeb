@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<!--
 <style>
 * {box-sizing: border-box;}
 ul {list-style-type: none;}
@@ -86,7 +87,7 @@ body {font-family: Verdana, sans-serif;}
   .weekdays li, .days li {width: 12.2%;}
 }
 </style>
-
+-->
 @section('content')
 @auth
 <div class="row">
@@ -137,7 +138,7 @@ body {font-family: Verdana, sans-serif;}
         @endif
     </div>
 </div>
-
+<!--
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
     <li class="nav-item dropdown">2020</li>
@@ -158,7 +159,6 @@ body {font-family: Verdana, sans-serif;}
 </nav>
 
 
-<!--
 <div class="form-group">
   <label for="month">Seleziona Mese</label>
     <select name="month">
@@ -176,7 +176,7 @@ body {font-family: Verdana, sans-serif;}
       <option value="12" onclick="nomeMese(12)">Dicembre</option>
     </select>
 </div>
--->
+
 
 <div class="month">      
   <ul>
@@ -281,6 +281,7 @@ body {font-family: Verdana, sans-serif;}
   document.getElementById("Mesetto").innerHTML =mese+" <br> 2020";
   
 }
-</script>
+
+</script>-->
 @endauth
-@endsection
+@endsection  

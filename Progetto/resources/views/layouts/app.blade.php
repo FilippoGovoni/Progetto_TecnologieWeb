@@ -26,7 +26,6 @@
     <script src="https://kit.fontawesome.com/a697c89225.js" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="../assets/js/jquery-3.2.0.min.js"></script>
-    
 </head>
 
 <body>
