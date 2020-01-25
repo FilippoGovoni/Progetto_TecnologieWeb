@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('client','ClientController',['all']); 
+Route::resource('client', 'ClientController');
+Route::post('client/update', 'ClientController@update')->name('client.update');
+Route::get('client/destroy/{id}', 'ClientController@destroy');
+Route::resource('client','ClientController',['only',['show']]); 
 Route::resource('admin','AdminController',['only',['index','create','store','destroy']]);
 Route::get('/visualizza/{filtro}', 'ProjectController@visualizza');
 Route::get('/research', 'ProjectController@research');

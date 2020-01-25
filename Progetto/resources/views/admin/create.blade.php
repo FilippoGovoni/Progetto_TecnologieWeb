@@ -1,5 +1,19 @@
 @extends('layouts.app')
-
+@section('link')
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+<!--Fonts -->
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<!-- Styles -->
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Icone -->
+<script src="https://kit.fontawesome.com/a697c89225.js" crossorigin="anonymous"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="../assets/js/jquery-3.2.0.min.js"></script>
+@endsection
 @section('content')
 @auth
 <div class="container">
@@ -48,40 +62,7 @@
         </div>
     </div>
 </div>
-<script>
-    /*$(document).ready(function() {
-        $('#ok').on('submit', function(event) {
-            event.preventDefault();
-            if ($('action').val() == 'Invia') {
-                $.ajax({
-                    url: "{{ route('admin.store') }}",
-                    method: 'POST',
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType: 'json',
-                    success: function(data) {
-                        var html = ' ';
-                        if (data.errors) {
-                            html = '<div class="alert alert-danger">';
-                            for (var count = 0; count < data.errors.length; count++) {
-                                html += '<p>' + data.errors[count] + '</p>';
-                            }
-                            html += '</div>';
-                        }
-                        if (data.success) {
-                            html = '<div class="alert alert-success">' + data.success + '</div>';
-                            $('#sample_form')[0].reset();
-                            $('#user_table').DataTable().ajax.reload();
-                        }
-                        $('#form_result').html(html);
-                    }
-                })
-            }
-        });
-    });*/
-</script>
+
 @endauth
 @guest
 <div class="container">

@@ -9,23 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <!-- Vue JS -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Icone -->
-    <script src="https://kit.fontawesome.com/a697c89225.js" crossorigin="anonymous"></script>
-    <!-- JQuery -->
-    <script type="text/javascript" src="../assets/js/jquery-3.2.0.min.js"></script>
+    
+    @yield('link')
+    @yield('css')
 </head>
 
 <body>
@@ -60,7 +46,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ URL::action('ClientController@index') }}"><i class="fas fa-list-ul"></i> Mostra Clienti</a>
-                                <a class="dropdown-item" href="{{ URL::action('ClientController@create') }}"><i class="fas fa-user-plus"></i> Inserisci Clienti</a>
+                                <!--<a class="dropdown-item" href="{{ URL::action('ClientController@create') }}"><i class="fas fa-user-plus"></i> Inserisci Clienti</a>-->
                             </div>
                         </li>
                         <li class="nav-item dropdown">

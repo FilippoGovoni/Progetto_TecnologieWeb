@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
-
-use App\Client;
 use Illuminate\Http\Request;
+use Freshbitsweb\Laratables\Laratables;
+use App\Client;
+use Validator;
 
 class ClientController extends Controller
 {
@@ -16,9 +16,19 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $elements=Client::all();
-
-        return view('client.index',compact('elements'));
+        if(request()->ajax())
+        {
+            return datatables()->of(Client::latest()->get())
+                    ->addColumn('action', function($data){
+                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Modifica</button>';
+                        $button .= '&nbsp;&nbsp;';
+                        $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Elimina</button>';
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('client.index');
     }
 
     /**
@@ -28,7 +38,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client.create');
+        //
     }
 
     /**
@@ -39,9 +49,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        
-        $validator = Validator::make($input, [
+        $rules = array(
             'ragione_sociale'      => 'required|max:16',
             'nome_referente'        => 'required|max:20',
             'cognome_referente'   => 'required|max:20',
@@ -49,17 +57,29 @@ class ClientController extends Controller
             'SSID'   => 'required',
             'PEC'   => 'required',
             'PIVA'   => 'required',
-        ]);
+        );
 
-        if ($validator->fails()) {
-            return redirect('client/create')
-                ->withErrors($validator)
-                ->withInput();
+        $error = Validator::make($request->all(), $rules);
+
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        Client::create($input);
-        
-        return redirect('/client');
+        $form_data = array(
+            'ragione_sociale'        =>  $request->ragione_sociale,
+            'nome_referente'         =>  $request->nome_referente,
+            'cognome_referente'         =>  $request->cognome_referente,
+            'Email_referente'         =>  $request->Email_referente,
+            'SSID'         =>  $request->SSID,
+            'PEC'         =>  $request->PEC,
+            'PIVA'              =>  $request->PIVA
+
+        );
+
+        Client::create($form_data);
+
+        return response()->json(['success' => 'Elemento aggiunto con successo.']);
     }
 
     /**
@@ -70,9 +90,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $elemento = Client::find($id);
-        
-        return view('client.show', compact('elemento'));
+        //
     }
 
     /**
@@ -83,9 +101,11 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $client = Client::find($id);
-
-        return view('client.edit',compact('client'));
+        if(request()->ajax())
+        {
+            $data = Client::findOrFail($id);
+            return response()->json(['data' => $data]);
+        }
     }
 
     /**
@@ -95,14 +115,38 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $input = $request->all();
+            $rules = array(
+                'ragione_sociale'      => 'required|max:16',
+            'nome_referente'        => 'required|max:20',
+            'cognome_referente'   => 'required|max:20',
+            'Email_referente'   => 'required',
+            'SSID'   => 'required',
+            'PEC'   => 'required',
+            'PIVA'   => 'required',
 
-        $client = Client::find($id);
-        $client->update($input);
+            );
+            $error = Validator::make($request->all(), $rules);
+            if($error->fails())
+            {
+                return response()->json(['errors' => $error->errors()->all()]);
+            }
+        
 
-        return redirect("/client/{$id}"); // Show
+        $form_data = array(
+            'ragione_sociale'        =>  $request->ragione_sociale,
+            'nome_referente'         =>  $request->nome_referente,
+            'cognome_referente'         =>  $request->cognome_referente,
+            'Email_referente'         =>  $request->Email_referente,
+            'SSID'         =>  $request->SSID,
+            'PEC'         =>  $request->PEC,
+            'PIVA'              =>  $request->PIVA
+
+        );
+        Client::whereId($request->hidden_id)->update($form_data);
+
+        return response()->json(['success' => 'Elemento aggiornato']);
     }
 
     /**
@@ -113,9 +157,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $elemento = Client::find($id);
-        $elemento->delete();
-
-        return redirect("/client");
+        $data = Client::findOrFail($id);
+        $data->delete();
     }
 }
