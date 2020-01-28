@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     @yield('link')
-    @yield('css')
 </head>
 
 <body>
