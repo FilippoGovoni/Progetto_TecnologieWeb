@@ -26,6 +26,9 @@ Route::get('/assegna/{id}', 'ProjectController@assegna');
 Route::get('/elimina_user_assegnato/{project_id}/{user_id}', 'ProjectController@elimina_user_assegnato');
 Route::resource('project','ProjectController',['all']);
 Route::resource('schedaore','SchedaoreController');
+Route::get('change', 'ChangePasswordController@index');
+Route::patch('change/update', 'ChangePasswordController@cambia_password');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
