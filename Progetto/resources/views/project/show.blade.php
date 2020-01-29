@@ -23,8 +23,8 @@
             <p>Nome: <b>{{ $elemento->name }}</b> </p>
             <p>Descrizione: <b>{{ $elemento->description }}</b> </p>
             <p>Note: <b>{{ $elemento->notes }}</b> </p>
-            <p>Data_inizio: <b>{{ date('d-m-yy', strtotime($elemento->data_inizio)) }}</b> </p>
-            <p>data_fine: <b>{{ date('d-m-yy', strtotime($elemento->data_fine)) }}</b> </p>
+            <p>Data di inizio: <b>{{ date('d-m-yy', strtotime($elemento->data_inizio)) }}</b> </p>
+            <p>Data di fine: <b>{{ date('d-m-yy', strtotime($elemento->data_fine)) }}</b> </p>
             <p>Cliente: <b>{{ $elemento->client->PIVA }}</b> </p><br>
             @if(count($utenti) > 0)
             @if($elemento->terminato==1)
@@ -72,7 +72,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a class="btn btn-primary float-md-right" href="{{ URL::action('ProjectController@index') }}">Torna a Progetti</a>
+            <a class="btn btn-primary float-md-right" href="{{ URL::action('ProjectController@visualizza',2) }}">Torna a Progetti</a>
         </div>
     </div>
 </div>

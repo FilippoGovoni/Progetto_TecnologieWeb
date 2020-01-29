@@ -17,41 +17,44 @@
 @section('content')
 
 <div class="container">
-<h2> Cambia Password </h2>
+    <h2> Cambia Password </h2><br>
     <div class="row">
-    @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-    @endif
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
     </div>
     <div class="row">
         <form action="{{ URL::action('ChangePasswordController@cambia_password')}}" method="POST">
-                {{ csrf_field() }}
-                {{ method_field('PATCH') }}
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
 
-                <div class="form-group">
-                    <label for="email">Inserisci la tua E-mail</label>                        
-                    <input class="form-control" type="text" name="email" placeholder="Inserisci il tuo indirizzo email" />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
                 </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input class="form-control" type="password" name="password" value=""/>
-                </div>
-                <div class="form-group">
-                    <label for="password">Ripeti Password</label>
-                    <input class="form-control" type="password" name="password_di_controllo" value=""/>
-                </div>
+                <input type="text" name="email" class="form-control" placeholder="Email" aria-label="email" aria-describedby="basic-addon1">
+            </div>
 
 
-                <input class="btn btn-primary" type="submit" value="Cambia Password">
-            </form>
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" value="" />
+            </div>
+            <div class="form-group">
+                <label for="password">Ripeti Password</label>
+                <input class="form-control" type="password" name="password_di_controllo" value="" />
+            </div>
+
+
+            <input class="btn btn-primary" type="submit" value="Cambia Password">
+        </form>
     </div>
+</div>
 </div>
 @endsection

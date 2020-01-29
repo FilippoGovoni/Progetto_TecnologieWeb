@@ -28,14 +28,11 @@ class ChangePasswordController extends Controller
     public function cambia_password(Request $request)
     {
         $input = $request->all();
-        $user = User::all()->where('email', '=', $request->email);
-        if (count($user) == 0) {
-            return back()->withErrors(["L'indirizzo email inserito è errato"])->withInput();
-        } else {
-
-            if ($user[1]->password == "UserPass") {
+        $user = User::where('email','=', $request->email)->first();
+        if ($user!=null) {
+            /*if ($user->password != bcrypt("UserPass")) {
                 return back()->withErrors(["Hai già cambiato la password"])->withInput();
-            }
+            }*/
 
             $validator = Validator::make($input, [
                 'email' => 'required',
@@ -48,8 +45,10 @@ class ChangePasswordController extends Controller
                     ->withInput();
             }
 
-            $user[1]->update(['password' => $request->password]);
+            $user->update(['password' => bcrypt($request->password)]);
             return redirect('login');
+        } else {
+            return back()->withErrors(["L'indirizzo email inserito è errato"])->withInput();      
         }
     }
 }
