@@ -67,6 +67,13 @@
                     <td><a href="{{ URL::action('ProjectController@assegna', $elemento->id) }}" class="btn btn-secondary btn-sm"> Assegna </a></td>
                 <tr>
                     @endif
+                <tfoot>
+                <tr>
+                <td>
+                <a href="{{ URL::action('ProjectController@assegna', $elemento->id) }}" class="btn btn-success btn-sm"><i class="fas fa-user-plus"></i> Assegna un altro utente</a>
+                </td>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </div>

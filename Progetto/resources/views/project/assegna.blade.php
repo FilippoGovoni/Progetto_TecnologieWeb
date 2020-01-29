@@ -19,7 +19,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h1>Assegna il progetto ad un utente</h1><br>
 
             <form action="{{ URL::action('ProjectController@update', $project->id) }}" method="POST">
                 {{ csrf_field() }}

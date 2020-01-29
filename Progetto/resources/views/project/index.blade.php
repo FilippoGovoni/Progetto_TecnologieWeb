@@ -79,9 +79,6 @@ $j = 0; ?>
 
                     <td>
                         <a href="{{ URL::action('ProjectController@show', $element->id) }}" class="btn btn-primary btn-sm"> Vedi </a>
-                        @if($element->terminato==0)
-                        <a href="{{ URL::action('ProjectController@assegna', $element->id) }}" class="btn btn-secondary btn-sm"> Assegna </a>
-                        @endif
                         <form method="POST" action="/project/{{ $element->id}}">
                             @method('DELETE')
                             @csrf
