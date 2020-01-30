@@ -125,7 +125,7 @@ $j = 0; ?>
                 @if($i==0)
                 <tr>
                     <td>
-                        @if($filtro==0)
+                        @if($filtro==2)
                         <p><b>Non hai progetti assegnati</b></p>
                         @else
                         <p><b>Non ci sono progetti terminati</b></p>
@@ -140,40 +140,16 @@ $j = 0; ?>
         @endif
     </div>
 </div>
-<script>
-    $('#delete').bind('click', function() {
-        event.preventDefault();
-        project_id = $(this).attr('id');
-        $('#confirmModal').modal('show');
-    });
-
-    $('#ok_button').click(function() {
-        $.ajax({
-            url: "project/" + project_id,
-            beforeSend: function() {
-                $('#ok_button').text('Deleting...');
-            },
-            success: function(data) {
-                setTimeout(function() {
-                    $('#confirmModal').modal('hide');
-                    $('#user_table').DataTable().ajax.reload();
-                }, 2000);
-            }
-        })
-    });
-</script>
 @endauth
 @guest
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"></div>
-
-                <div class="card-body">
-
-                    <p>Effettua il login per accedere: <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a> </p>
-                </div>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Good Try</strong> Devi effettuare il login per accedere al contenuto: <a class="btn btn-warning" href="{{ route('login') }}">{{ __('Login') }}</a> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
     </div>

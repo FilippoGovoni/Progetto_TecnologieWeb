@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Validator;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Exception;
+use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
 {
@@ -28,13 +28,10 @@ class ChangePasswordController extends Controller
     public function cambia_password(Request $request)
     {
         $input = $request->all();
-        $user = User::where('email','=', $request->email)->first();
-        if ($user!=null) {
-            /*if ($user->password != bcrypt("UserPass")) {
-                return back()->withErrors(["Hai già cambiato la password"])->withInput();
-            }*/
-
-            $validator = Validator::make($input, [
+        $user = User::where('email', '=', $request->email)->first();
+        if ($user != null) {
+            if (Hash::check('UserPass', $user->password)) {
+                $validator = Validator::make($input, [
                 'email' => 'required',
                 'password' => 'required',
                 'password_di_controllo'   => 'required|same:password',
@@ -47,8 +44,13 @@ class ChangePasswordController extends Controller
 
             $user->update(['password' => bcrypt($request->password)]);
             return redirect('login');
+            }else{                
+                return back()->withErrors(["Hai già cambiato la password. Utilizza Ho dimenticato la password"])->withInput();
+            }
+
+            
         } else {
-            return back()->withErrors(["L'indirizzo email inserito è errato"])->withInput();      
+            return back()->withErrors(["L'indirizzo email inserito è errato"])->withInput();
         }
     }
 }
