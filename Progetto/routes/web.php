@@ -27,7 +27,7 @@ Route::get('/elimina_user_assegnato/{project_id}/{user_id}', 'ProjectController@
 Route::resource('project','ProjectController',['all']);
 Route::resource('schedaore','SchedaoreController');
 
-Route::get('att_mensile','SchedaoreController@att_mensile');
+Route::get('att_mensile/{mese}','SchedaoreController@att_mensile')->name('att_mensile');
 
 Route::get('change', 'ChangePasswordController@index');
 Route::patch('change/update', 'ChangePasswordController@cambia_password');

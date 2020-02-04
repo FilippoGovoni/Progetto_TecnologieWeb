@@ -71,7 +71,7 @@
                         </li>
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::action('SchedaoreController@att_mensile') }}">Visualizza attività</a>
+                            <a class="nav-link" href="{{ URL::action('SchedaoreController@att_mensile',02) }}">Visualizza attività</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navBarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

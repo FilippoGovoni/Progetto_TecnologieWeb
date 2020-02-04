@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\lavora_su;
 use Illuminate\Http\Request;
 use Validator;
@@ -106,8 +106,11 @@ class SchedaoreController extends Controller
 
 
 
-    public function att_mensile(){
-        $schede=SchedaOre::all();
+    public function att_mensile($month){    
+
+        //SchedaOre::DB::raw('MONTH(data_scheda)','=',$month)->get();
+        //$schede=SchedaOre::all()->where('MONTH(data_scheda)',$month);
+        $schede=SchedaOre::whereMonth('data_scheda',$month)->get();
         return view('schedaore.att_mensile',compact('schede'));
     }
 }
