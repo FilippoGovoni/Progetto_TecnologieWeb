@@ -102,4 +102,12 @@ class SchedaoreController extends Controller
         SchedaOre::find($id)->delete();
         return redirect('/schedaore');
     }
+
+
+
+
+    public function att_mensile(){
+        $schede=SchedaOre::all();
+        return view('schedaore.att_mensile',compact('schede'));
+    }
 }
