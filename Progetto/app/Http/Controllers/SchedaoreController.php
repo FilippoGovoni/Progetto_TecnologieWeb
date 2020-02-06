@@ -111,6 +111,6 @@ class SchedaoreController extends Controller
         //SchedaOre::DB::raw('MONTH(data_scheda)','=',$month)->get();
         //$schede=SchedaOre::all()->where('MONTH(data_scheda)',$month);
         $schede=SchedaOre::whereMonth('data_scheda',$month)->get();
-        return view('schedaore.att_mensile',compact('schede'));
+        return view('schedaore.att_mensile',compact('schede','month'));
     }
 }

@@ -235,7 +235,7 @@
                     $('#PEC').val(html.data.PEC);
                     $('#PIVA').val(html.data.PIVA);
                     $('#hidden_id').val(html.data.id);
-                    $('.modal-title').text("Modifica");
+                    $('.modal-title').text("Cliente");
                     $('#action_button').val("Edit");
                     $('#action').val("Edit");
                     $('#formModal').modal('show');

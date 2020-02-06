@@ -20,13 +20,21 @@
     @auth
         
         <fieldset>
-        
+        <?php $mesi=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];?>
         <table class="table" >
             <thead>
                 <tr>
                     <th scope="col">Nome Progetto</th>
                     <th scope="col">Data : 
                     <select name="Mese" id="id_Mese" onchange="meseSelz()">
+                    @for($i=0;$i < 12;$i++)
+                    @if($i+1 == $month)
+                    <option value="{{$i+1}}" selected>{{ $mesi[$i] }}</option>
+                    @else
+                    <option value="{{$i+1}}">{{ $mesi[$i] }}</option>
+                    @endif
+                    @endfor
+                    <!--
                         <option selected>Mese</option>
                         <option value="01">Gennaio</option>
                         <option value="02">Febbraio</option>
@@ -39,7 +47,7 @@
                         <option value="09">Settembre</option>
                         <option value="10">Ottobre</option>
                         <option value="11">Novembre</option>
-                        <option value="12">Dicembre</option>
+                        <option value="12">Dicembre</option>-->
                     </select>
                     </th>
                     <th scope="col">Ore di Lavoro</th>

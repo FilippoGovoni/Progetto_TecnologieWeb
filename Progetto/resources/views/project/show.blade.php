@@ -25,7 +25,8 @@
             <p>Note: <b>{{ $elemento->notes }}</b> </p>
             <p>Data di inizio: <b>{{ date('d-m-yy', strtotime($elemento->data_inizio)) }}</b> </p>
             <p>Data di fine: <b>{{ date('d-m-yy', strtotime($elemento->data_fine)) }}</b> </p>
-            <p>Cliente: <b>{{ $elemento->client->PIVA }}</b> </p><br>
+            <p>Cliente: <a href="javascript:autoPopup()"><b>{{ $elemento->client->nome_referente }} {{ $elemento->client->cognome_referente }} {{ $elemento->client->PIVA }}</b></a>
+            </p><br>
             <?php $totale = 0; ?>
             @foreach ($utenti as $user)
             @foreach($schede as $s)
@@ -115,6 +116,36 @@
     </div>
 </div>
 </div>
+<script type="text/javascript">
+    function autoPopup() {
+        var stili = "top=70, left=600, width=400, height=500, status=no, menubar=no, toolbar=no scrollbars=yes";
+        var testo = window.open("", "", stili);
+        testo.document.write("<html>");
+        testo.document.write(" <head>");
+        testo.document.write("<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous'>");
+        testo.document.write(" <title>Cliente</title>");
+        testo.document.write(" </head>");
+        testo.document.write("<body topmargin=5>");
+        testo.document.write("<div class='card' style='width: 18rem;'>");
+        testo.document.write("<i class='fas fa-user'></i>");
+        testo.document.write("<div class='card-body'>");
+        testo.document.write("<h4 class='card-title'>Scheda Cliente</h4>");
+        testo.document.write("</div>");
+        testo.document.write("<ul class='list-group list-group-flush'>");
+        testo.document.write("<li class='list-group-item'>{{$elemento->client->ragione_sociale}}</li>");
+        testo.document.write("<li class='list-group-item'>{{$elemento->client->nome_referente}}</li>");
+        testo.document.write("<li class='list-group-item'>{{$elemento->client->cognome_referente}}</li>");
+        testo.document.write("<li class='list-group-item'>{{$elemento->client->Email_referente}}</li>");
+        testo.document.write("<li class='list-group-item'>SSID: {{$elemento->client->SSID}}</li>");
+        testo.document.write("<li class='list-group-item'>PEC: {{$elemento->client->PEC}}</li>");
+        testo.document.write("<li class='list-group-item'>Partita IVA: {{$elemento->client->PIVA}}</li>");
+        testo.document.write("</div>");
+        testo.document.write("</body>");
+        testo.document.write("</html>");
+    }
+</script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 @endauth
 @guest
 <div class="container">

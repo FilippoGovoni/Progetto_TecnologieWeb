@@ -24,10 +24,10 @@
                 <table id="table" class="table table-sm">
                     <tr class="table-info">
                         <td>
-                            <input type="date" name="data_inizio" aria-label="data_inizio" class="form-control" value=<?php echo date('Y-m-01') ?>>
+                            <input type="date" name="data_inizio" aria-label="data_inizio" class="form-control" value="{{$data_inizio}}">
                         </td>
                         <td>
-                            <input id="dat_fin" type="date" name="data_fine" aria-label="data_fine" class="form-control" value=<?php echo date("Y-m-t", strtotime($data)) ?>>
+                            <input id="dat_fin" type="date" name="data_fine" aria-label="data_fine" class="form-control" value="{{$data_fine}}">
                         </td>
                         <td>
                             <select id="tipo" class="form-control" name="tipologia">
