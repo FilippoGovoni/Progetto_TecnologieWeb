@@ -12,8 +12,8 @@ class SchedaoreController extends Controller
     
     public function index()
     {
-        $schede=SchedaOre::orderBy('data_scheda')->get();
-        return view('schedaore.index',compact('schede'));
+        /*$schede=SchedaOre::orderBy('data_scheda')->get();
+        return view('schedaore.index',compact('schede'));*/
     }
 
     
@@ -50,13 +50,6 @@ class SchedaoreController extends Controller
         if(($controllo->data_scheda< $progetto->data_inizio) || ($controllo->data_scheda> $progetto->data_fine)){
             return back()->withErrors(['Data scheda non valida (fuori dalle date del progetto)'])->withInput();
         }
-        /*$progetto=Project::where('name','=',$request->project_name);
-        if(($request->data_scheda < $progetto->data_inizio) && ($request->data_scheda > $progetto->data_fine)){
-            $errors=['La data inserita contrasta le date del progetto'];
-            return back()
-                ->withErrors($errors)
-                ->withInput();
-        }*/
 
         $validator=Validator::make($input,[
             'data_scheda'=>'required|date',
@@ -71,9 +64,10 @@ class SchedaoreController extends Controller
                 ->withInput();
         }
 
-
+        $month = date('n');
+        $anno = date('Y');
         SchedaOre::create($input);
-        return redirect('schedaore');
+        return redirect("/att_mensile/{$month}/{$anno}");
 
     }
 
@@ -106,11 +100,10 @@ class SchedaoreController extends Controller
 
 
 
-    public function att_mensile($month){    
+    public function att_mensile($month,$anno){    
 
-        //SchedaOre::DB::raw('MONTH(data_scheda)','=',$month)->get();
-        //$schede=SchedaOre::all()->where('MONTH(data_scheda)',$month);
-        $schede=SchedaOre::whereMonth('data_scheda',$month)->get();
-        return view('schedaore.att_mensile',compact('schede','month'));
+        $schede=SchedaOre::whereMonth('data_scheda',$month)->whereYear('data_scheda',$anno)->orderBy('data_scheda')->get();
+        //$schede=SchedaOre::whereMonth('data_scheda',$month)->get();
+        return view('schedaore.att_mensile',compact('schede','month','anno'));
     }
 }

@@ -9,17 +9,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    
+
     @yield('link')
 </head>
 
 <body>
-    <?php $month=date('n'); ?>
+    <?php $month = date('n');
+    $anno = date('Y'); ?>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ URL::action('ProjectController@visualizza','2') }}">
-                <i class="fas fa-project-diagram"></i> {{ config('app.name', 'Laravel') }}
+                    <i class="fas fa-project-diagram"></i> {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -62,26 +63,24 @@
                                 Scheda Ore
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ URL::action('SchedaoreController@att_mensile',$month) }}"><i class="fas fa-list-ul"></i> Visualizza attività</a>
+                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@att_mensile',[$month,$anno]) }}"><i class="fas fa-list-ul"></i> Visualizza attività</a>
                                 <a class="dropdown-item" href="{{ URL::action('SchedaoreController@create') }}"><i class="fas fa-folder-plus"></i> Inserisci una nuova Scheda Ore</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{URL::action('ProjectController@research')}}">Visualizza statistiche ore</a>
+                            <a class="nav-link" href="{{URL::action('ProjectController@research')}}"><i class="fas fa-chart-line"></i> Visualizza statistiche ore</a>
                         </li>
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::action('SchedaoreController@att_mensile',$month) }}">Visualizza attività</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navBarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Scheda Ore
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@index') }}"><i class="fas fa-list-ul"></i> Visualizza le tue schede Ore</a>
+                                <a class="dropdown-item" href="{{ URL::action('SchedaoreController@att_mensile',[$month,$anno]) }}"><i class="fas fa-list-ul"></i> Visualizza attività</a>
                                 <a class="dropdown-item" href="{{ URL::action('SchedaoreController@create') }}"><i class="fas fa-folder-plus"></i> Inserisci una nuova Scheda Ore</a>
                             </div>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ URL::action('ProjectController@visualizza','2') }}"><i class="fas fa-list-ul"></i> Riepilogo Progetti</a>
                         </li>

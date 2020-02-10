@@ -10,8 +10,6 @@
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a697c89225.js" crossorigin="anonymous"></script>
 @endsection
-@section('css')
-@endsection
 @section('content')
 @auth
 <div class="container">

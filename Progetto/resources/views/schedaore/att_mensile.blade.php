@@ -14,9 +14,18 @@
     <script src="https://kit.fontawesome.com/a697c89225.js" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="../assets/js/jquery-3.2.0.min.js"></script>
+    <style>
+        #id_Mese{
+                width:110px;
+        }
+        #id_Anno{
+            width:80px;
+        }
+    </style>
 @endsection
 
 @section('content')
+
     @auth
         
         <fieldset>
@@ -34,20 +43,15 @@
                     <option value="{{$i+1}}">{{ $mesi[$i] }}</option>
                     @endif
                     @endfor
-                    <!--
-                        <option selected>Mese</option>
-                        <option value="01">Gennaio</option>
-                        <option value="02">Febbraio</option>
-                        <option value="03">Marzo</option>
-                        <option value="04">Aprile</option>
-                        <option value="05">Maggio</option>  
-                        <option value="06">Giugno</option>
-                        <option value="07">Luglio</option>
-                        <option value="08">Agosto</option>
-                        <option value="09">Settembre</option>
-                        <option value="10">Ottobre</option>
-                        <option value="11">Novembre</option>
-                        <option value="12">Dicembre</option>-->
+                    </select>
+                    <select name="Anno" id="id_Anno" onchange="meseSelz()">
+                    @for($i=2019;$i < 2030;$i++)
+                    @if($i == $anno)
+                    <option value="{{$i}}" selected>{{ $i }}</option>
+                    @else
+                    <option value="{{$i}}">{{ $i }}</option>
+                    @endif
+                    @endfor
                     </select>
                     </th>
                     <th scope="col">Ore di Lavoro</th>
@@ -59,10 +63,10 @@
                 @foreach($schede as $el)
                 @if(Auth::user()->id == $el->user_id)
                     <tr>
-                        <td>{{ $el->project->name}} </td>
-                        <td>{{ date('d-m-y', strtotime($el->data_scheda))}}</td>
-                        <td>{{ $el->hours_work}}</td>
-                        <td>{{ $el->note}}</td>
+                        <td><b>{{ $el->project->name}} </b></td>
+                        <td><b>{{ date('d-m-y', strtotime($el->data_scheda))}}</b></td>
+                        <td><b>{{ $el->hours_work}}</b></td>
+                        <td><b>{{ $el->note}}</b></td>
                         <td>
                             <form method="POST" action="/schedaore/{{ $el->id}}">
                             @method('DELETE')  
@@ -86,9 +90,11 @@
         <script>
         function meseSelz(){
             var valor = document.getElementById("id_Mese").value;
+            var valor1 = document.getElementById("id_Anno").value;
             var mese;
-            var url = '{{ route("att_mensile",":valor") }}';
+            var url = '{{ route("att_mensile",[":valor",":valor1"]) }}';
             url=url.replace(':valor',valor);
+            url=url.replace(':valor1',valor1);
             window.location.href=url;
         }
         </script>
