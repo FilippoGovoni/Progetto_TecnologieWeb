@@ -21,6 +21,7 @@
     <div class="row">
         <div class="col-md-6">
             <h1>Modifica i tuoi dati</h1>
+            <br>
 
             @if ($errors->any())
             <div class="alert alert-danger">

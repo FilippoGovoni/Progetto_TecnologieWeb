@@ -108,7 +108,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 <a class="dropdown-item" href="{{ URL::action('AdminController@edit',Auth::user()->id )}}">
-                                    {{ __('Modifica utente') }}
+                                    {{ __('Modifica i tuoi dati') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
