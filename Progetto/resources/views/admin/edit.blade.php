@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h1>Modifica Utente</h1>
+            <h1>Modifica i tuoi dati</h1>
 
             @if ($errors->any())
             <div class="alert alert-danger">
