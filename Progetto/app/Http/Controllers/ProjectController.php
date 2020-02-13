@@ -68,6 +68,9 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        if(request('data_inizio') < date('Y-m-d') ){
+            return back()->withErrors(['Data inizio non valida '])->withInput();
+        }
         
         $validator = Validator::make($input, [
             'name'      => 'required|max:50',

@@ -85,7 +85,7 @@
 
             <div class="form-group">
                 <label for="hours_work">Numero di ore</label>
-                <input class="form-control" type="number" name="hours_work" />
+                <input class="form-control" type="number" name="hours_work" min="0" max="24"/>
             </div>
 
             <div class="form-group">
@@ -98,6 +98,7 @@
             <input class="btn btn-primary" type="submit" value="Conferma scheda ore">
         </form>
         @else
+        <br>
         <h4>Non hai progetti assegnati o i progetti sono terminati</h4>
         @endif
     </div>

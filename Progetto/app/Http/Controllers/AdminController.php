@@ -55,7 +55,8 @@ class AdminController extends Controller
 
         User::create($input);
         
-        return redirect ("/admin");    }
+        return redirect ("/admin");    
+    }
 
     /**
      * Display the specified resource.
@@ -76,7 +77,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=User::find($id);
+        return view('admin.edit',compact('user'));
     }
 
     /**
@@ -86,9 +88,23 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id , Request $request)
     {
-        //
+        $input=$request->all();
+        $validator = Validator::make($input, [
+            'name'      => 'required|max:20',
+            'surname'    => 'required|max:20',
+            'email'   =>    'required|max:50',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/admin/edit/{id}')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $user=User::find($id);
+        $user->update($input);
+        return redirect()->action('AdminController@edit',$id);
     }
 
     /**

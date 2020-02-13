@@ -50,6 +50,10 @@ class SchedaoreController extends Controller
         if(($controllo->data_scheda< $progetto->data_inizio) || ($controllo->data_scheda> $progetto->data_fine)){
             return back()->withErrors(['Data scheda non valida (fuori dalle date del progetto)'])->withInput();
         }
+        if( ($controllo->hours_work >24) || ($controllo->hours_work <1) ){
+            return back()->withErrors(['Ore lavoro della scheda non valido'])->withInput();
+        } 
+
 
         $validator=Validator::make($input,[
             'data_scheda'=>'required|date',
@@ -94,7 +98,9 @@ class SchedaoreController extends Controller
     public function destroy($id)
     {
         SchedaOre::find($id)->delete();
-        return redirect('/schedaore');
+        $month = date('n');
+        $anno = date('Y');
+        return redirect("/att_mensile/{$month}/{$anno}");
     }
 
 

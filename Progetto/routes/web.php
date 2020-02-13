@@ -19,7 +19,7 @@ Route::resource('client', 'ClientController');
 Route::post('client/update', 'ClientController@update')->name('client.update');
 Route::get('client/destroy/{id}', 'ClientController@destroy');
 Route::resource('client','ClientController',['only',['show']]); 
-Route::resource('admin','AdminController',['only',['index','create','store','destroy']]);
+Route::resource('admin','AdminController',['all']);
 Route::get('/visualizza/{filtro}', 'ProjectController@visualizza');
 Route::get('/research', 'ProjectController@research');
 Route::get('/ore_progetto', 'ProjectController@ore_progetto');
@@ -32,7 +32,6 @@ Route::get('att_mensile/{mese}/{anno}','SchedaoreController@att_mensile')->name(
 
 Route::get('change', 'ChangePasswordController@index');
 Route::patch('change/update', 'ChangePasswordController@cambia_password');
-
 
 
 

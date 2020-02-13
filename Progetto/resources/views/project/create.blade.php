@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label for="notes">Note</label>
-                    <input class="form-control" type="text" name="notes" />
+                    <textarea name="notes" cols="50" rows="5"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="data_inizio">Data di inizio</label>
