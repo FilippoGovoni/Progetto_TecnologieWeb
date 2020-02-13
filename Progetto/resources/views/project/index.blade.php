@@ -59,6 +59,7 @@ $j = 0; ?>
                     <th scope="col">Azioni</th>
                     @else
                     <th scope="col">Ore Totali Spese</th>
+                    <th scope="col">Azioni</th>
                     @endif
 
                 </tr>
@@ -115,7 +116,9 @@ $j = 0; ?>
                     @endforeach
 
                     <td><b><?php echo $hour_counter; ?> </b></td>
-
+                    <td>
+                        <a href="{{ URL::action('ProjectController@show', $element->id) }}" class="btn btn-primary btn-sm"> Vedi </a>
+                    </td>
                 </tr>
                 @endif
                 <?php $j = 0; ?>

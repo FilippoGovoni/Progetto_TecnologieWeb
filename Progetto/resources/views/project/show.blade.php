@@ -62,6 +62,7 @@
 </div>
 @endif
 <br><br>
+@if(Auth::user()->role==1)
 @if(count($utenti) > 0)
 @if($elemento->terminato==1)
 <p>Utenti che hanno lavorato al progetto: </p>
@@ -110,6 +111,7 @@
         </tfoot>
         @endif
 </table>
+@endif
 </div>
 </div>
 <div class="row">
